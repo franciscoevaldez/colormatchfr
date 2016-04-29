@@ -1,2 +1,39 @@
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<p>Hola gato</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ColorMatcher</title>
+  <link href="css/main.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="grid__container">
+    <canvas id="grid--cyan"></canvas>
+  </div>
+
+<!-- Import paper.js -->
+<script type="text/javascript" src="js/vendor/paper-full.min.js"></script>
+<!-- Begin to draw the grid -->
+<script type="text/javascript" src="js/gridder.js"></script>
+<script type="text/javascript">
+
+  window.onload = function() {
+
+    // declare the grid canvas
+    var canvasCyan = document.getElementById('grid--cyan'),
+      gridArray = mtCreateGrid(10, 10, 10);
+
+    // create the paper object
+    paper.setup(canvasCyan);
+
+    // Create elements
+    mtCreateHalfToneForGrid(gridArray, 8);
+
+
+
+  }
+
+</script>
+
+</body>
+</html>
