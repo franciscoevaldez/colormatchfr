@@ -8,76 +8,19 @@
 <body>
 
   <div class="grid__container">
-    <canvas id="grid--cyan" class="grid__canvas"></canvas>
+    <canvas id="grid--halftones" class="grid__canvas"></canvas>
   </div>
+
+  <input type="range" min="0" max="100" name="cyanNumber" id="slider--cyan" > <br>
+  <input type="range" min="0" max="100" name="yellowNumber" id="slider--yellow" > <br>
+  <input type="range" min="0" max="100" name="magentaNumber" id="slider--magenta" > <br>
+  <input type="range" min="0" max="100" name="blackNumber" id="slider--black" > <br>
 
 <!-- Import paper.js -->
 <script type="text/javascript" src="js/vendor/paper-full.min.js"></script>
 <!-- Begin to draw the grid -->
 <script type="text/javascript" src="js/gridder.js"></script>
-<script type="text/javascript">
-
-  var gridCyan, gridMagenta, gridYellow, gridBlack;
-
-  window.onload = function() {
-
-    // declare the grid canvas
-    var canvasCyan = document.getElementById('grid--cyan');
-
-    // create the paper object
-    paper.setup(canvasCyan);
-
-    // create the grids
-    gridCyan = mtCreateGridWithSettings({
-        distance  : 20,
-        color     : [0,163,218],
-        angle     : -15,
-        initial   : 9
-      });
-
-    gridMagenta = mtCreateGridWithSettings({
-        distance  : 20,
-        color     : [216,18,125],
-        angle     : -75,
-        initial   : 7
-      });
-
-    gridYellow = mtCreateGridWithSettings({
-        distance  : 20,
-        color     : [255,240,3],
-        angle     : 0,
-        initial   : 9
-      });
-
-    gridBlack = mtCreateGridWithSettings({
-        distance  : 20,
-        color     : [0,0,0],
-        angle     : -45,
-        initial   : 1
-      });
-
-    mtDisplayGrid(gridCyan)
-    mtDisplayGrid(gridMagenta)
-    mtDisplayGrid(gridBlack)
-    mtDisplayGrid(gridYellow)
-
-    // create the paper object
-    //paper.setup(canvasCyan);
-
-    // Create elements for cyan
-    //mtCreateHalfToneForGrid(paper, gridCyan, 8);
-
-    //gridCyan.dots = mtCreateDotsForGrid(gridCyan, 8);
-    //mtAddGrid(gridCyan, 30)
-
-    // Update canvas
-    paper.view.update();
-
-
-
-  }
-
-</script>
+<script type="text/javascript" src="js/gridsetup.js"></script>
 
 </body>
 </html>
