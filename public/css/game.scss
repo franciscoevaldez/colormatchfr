@@ -1,0 +1,29 @@
+
+$neutralgrey: rgb(60,60,60);
+
+body{
+  background-color: $neutralgrey;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.colorPair{
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 8em);
+  align-items: center;
+  justify-content: center;
+
+  &__canvas{
+    width: 500px;
+    height: 250px;
+  }
+
+}
+
+.controls{
+  width: 100vw;
+  height: 8em;
+  text-align: center;
+}
