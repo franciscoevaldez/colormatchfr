@@ -14,9 +14,14 @@ window.onload = function() {
 
   // create the paper object
   paper.setup(canvas);
-  targetCYMK = setTargetCYMK();
+  targetCYMK = randomColorWithDominant();
   setupView();
   bindSliders();
+
+  console.log("randomic test")
+  for (var i = 0; i < 30; i++) {
+    randomColorWithDominant();
+  }
 
   // Update canvas
   paper.view.update();
