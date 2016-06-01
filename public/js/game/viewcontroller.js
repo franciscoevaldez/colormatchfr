@@ -45,10 +45,10 @@ function setupView(){
   targetYel   = createSquare(colYel, targetCYMK.yel),
   targetBlack = createSquare(colBlack, targetCYMK.black);
 
-  editCyan  = createSquare(colCyan,   0, "right"),
-  editMag   = createSquare(colMag,    0, "right"),
-  editYel   = createSquare(colYel,    0, "right"),
-  editBlack = createSquare(colBlack,  0, "right");
+  editCyan  = createSquare(colCyan,   0.001, "right"),
+  editMag   = createSquare(colMag,    0.001, "right"),
+  editYel   = createSquare(colYel,    0.001, "right"),
+  editBlack = createSquare(colBlack,  0.001, "right");
 }
 
 function updateColor(color, value){
