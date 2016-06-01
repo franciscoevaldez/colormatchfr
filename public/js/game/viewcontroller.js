@@ -51,6 +51,14 @@ function setupView(){
   editBlack = createSquare(colBlack,  0.001, "right");
 }
 
+function updateTargetToCMYK(cmyk){
+  targetCyan.opacity = (cmyk.cyan > 0) ? cmyk.cyan / 100 : 0.001,
+  targetMag.opacity = (cmyk.mag > 0) ? cmyk.mag / 100 : 0.001,
+  targetYel.opacity = (cmyk.yel > 0) ? cmyk.yel / 100 : 0.001,
+  targetBlack.opacity = (cmyk.black > 0) ? cmyk.black / 100 : 0.001;
+  paper.view.update();
+}
+
 function updateColor(color, value){
   var colorToAffect;
 
@@ -78,25 +86,49 @@ function updateColor(color, value){
 
 }
 
+function getCurrentColor(){
+  var cyan = parseInt(cyanSlider.value) / 100,
+      magenta = parseInt(magentaSlider.value) / 100,
+      yellow = parseInt(yellowSlider.value) / 100,
+      black = parseInt(blackSlider.value) / 100;
+  return getRGBforCYMK ( cyan, magenta, yellow, black );
+}
+
+function getCurrentDelta(){
+  var currentColor = getCurrentColor(),
+      targetColor = getRGBforCYMKobject(targetCYMK);
+  return getDeltaEforRGBPair(currentColor, targetColor);
+}
+
 function bindSliders(){
   cyanSlider    = document.getElementById("slider--cyan"),
-  yellowSlider  = document.getElementById("slider--yellow"),
   magentaSlider = document.getElementById("slider--magenta"),
+  yellowSlider  = document.getElementById("slider--yellow"),
   blackSlider   = document.getElementById("slider--black");
 
   cyanSlider.addEventListener('input',function(){
     updateColor('cyan',   (cyanSlider.value/100))
   })
 
-  yellowSlider.addEventListener('input',function(){
-    updateColor('yellow', (yellowSlider.value/100))
-  })
-
   magentaSlider.addEventListener('input',function(){
     updateColor('magenta',(magentaSlider.value/100))
+  })
+
+  yellowSlider.addEventListener('input',function(){
+    updateColor('yellow', (yellowSlider.value/100))
   })
 
   blackSlider.addEventListener('input',function(){
     updateColor('black',  (blackSlider.value/100))
   })
+
+  changeButton = document.getElementById('btnChange');
+  confirmButton = document.getElementById('btnCheck');
+
+  changeButton.addEventListener('click', changeTargetColor);
+  confirmButton.addEventListener('click', checkColorMatch);
+
+  newGameButton = document.getElementById('btnNewGame');
+  newGameButton.addEventListener('click', startNewGame);
+
 }

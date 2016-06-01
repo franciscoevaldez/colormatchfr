@@ -11,7 +11,6 @@
   hardest
 */
 
-
 function getRandomInRange(minValue, maxValue){
 
   var range = maxValue - minValue;

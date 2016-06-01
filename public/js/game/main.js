@@ -4,7 +4,8 @@ var colCyan   = new paper.Color(0/255, 163/255, 218/255),
     colYel    = new paper.Color(255/255, 240/255, 3/255),
     colBlack  = new paper.Color(0,0,0),
     colBase   = new paper.Color(1,1,1),
-    targetCYMK;
+    targetCYMK,
+    changeButton, confirmButton;
 
 
 window.onload = function() {
@@ -15,13 +16,9 @@ window.onload = function() {
   // create the paper object
   paper.setup(canvas);
   targetCYMK = randomColorWithScale();
+
   setupView();
   bindSliders();
-
-  console.log("randomic test")
-  for (var i = 0; i < 30; i++) {
-    randomColorWithScale();
-  }
 
   // Update canvas
   paper.view.update();
