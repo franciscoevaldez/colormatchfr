@@ -81,7 +81,14 @@ function mtResizeGrid(grid,size){
       delta         = targetSize / currentSize;
 
   for (var dC = 0; dC < gridDots.length; dC++) {
-    gridDots[dC].scale(delta);
+    if (size == 0) {
+      gridDots[dC].opacity = 0;
+    } else {
+      if (gridDots[dC].opacity == 0) {
+        gridDots[dC].opacity = 1;
+      }
+      gridDots[dC].scale(delta);
+    }
   }
 
   paper.view.update();
