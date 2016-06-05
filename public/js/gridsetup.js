@@ -32,7 +32,7 @@ window.onload = function() {
 
   gridBlack = mtCreateGridWithSettings({
       distance  : 20,
-      color     : [0,0,0],
+      color     : [10,10,10],
       angle     : -45,
       initial   : 1
     });

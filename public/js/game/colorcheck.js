@@ -1,7 +1,7 @@
 var cyanColor     = { "red" : 0,    "green": 163,   "blue": 218 },
     magentaColor  = { "red" : 216,  "green": 18,    "blue": 125 },
     yellowColor   = { "red" : 255,  "green": 240,   "blue": 3   },
-    blackColor    = { "red" : 0,    "green": 0,     "blue": 0   };
+    blackColor    = { "red" : 10,   "green": 10,    "blue": 10  };
 
 function getRGBforColorAtOpacity(color, opacity){
 
