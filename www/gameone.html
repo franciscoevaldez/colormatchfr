@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ColorMatcher</title>
+  <link href="css/game.css" type="text/css" rel="stylesheet">
+</head>
+<body class="gameSingle">
+
+  <div class="colorPair">
+    <canvas id="colorPair__canvas" class="colorPair__canvas"></canvas>
+  </div>
+
+  <div class="controls">
+    C -<input type="range" min="0" max="100" value="0" name="cyanNumber" id="slider--cyan" >+ <br>
+    M -<input type="range" min="0" max="100" value="0" name="magentaNumber" id="slider--magenta" >+ <br>
+    Y -<input type="range" min="0" max="100" value="0" name="yellowNumber" id="slider--yellow" >+ <br>
+    K -<input type="range" min="0" max="100" value="0" name="blackNumber" id="slider--black" >+ <br>
+
+    <input type="button" id="btnChange" value="Otro color!">
+    <input type="submit" id="btnCheck" value="Verificar color!">
+  </div>
+
+  <div class="result result--noshow" id="result__JS__container">
+    <h1 id="result__JS__title">Buenisimo!</h1>
+    <p>Tu Delta-E fue de <strong id="result__JS__delta">12.234</strong></p>
+    <a href="#" id="btnNewGame">Usar otro color</a>
+  </div>
+
+  <!-- Cripts -->
+  <script type="text/javascript" src="js/vendor/paper-full.min.js"></script>
+  <script type="text/javascript" src="js/game/patchcontroller.js"></script>
+  <script type="text/javascript" src="js/game/viewcontroller.js"></script>
+  <script type="text/javascript" src="js/game/gamecontroller.js"></script>
+  <script type="text/javascript" src="js/game/colorcheck.js"></script>
+  <script type="text/javascript" src="js/game/main.js"></script>
+
+</body>
+</html>
