@@ -1,116 +1,100 @@
-// Grid handling functions
+// fourGrid creation
+function grFourGrid(overrides){
 
-// fill optionals to default values
-function grFillSettingsOptionals(settings){
+  var cyanPresets     = overrides,
+      magentaPresets  = overrides,
+      yellowPresets   = overrides,
+      blackPresets    = overrides;
 
-  settings.width    = (settings.width)    ? settings.width    : 300;
-  settings.height   = (settings.height)   ? settings.height   : 300;
-  settings.distance = (settings.distance) ? settings.distance : 20;
-  settings.rows     = (settings.rows)     ? settings.rows     : 20;
-  settings.columns  = (settings.columns)  ? settings.columns  : 20;
-  settings.offsetX  = (settings.offsetX)  ? settings.offsetX  : 0;
-  settings.offsetY  = (settings.offsetY)  ? settings.offsetY  : 0;
-  settings.angle    = (settings.angle)    ? settings.angle    : 0;
-  settings.initial  = (settings.initial)  ? settings.initial  : 5;
-  settings.color    = (settings.color)    ? settings.color    : [50,50,50];
-  settings.maxSize  = (settings.maxSize)  ? settings.maxSize  : settings.distance * 1.45;
+  cyanPresets.color    = [0,163,218];
+  cyanPresets.angle    = -15;
+  this.cyan            = new grGrid ( cyanPresets );
 
-  return settings;
-}
+  magentaPresets.color = [216,18,125];
+  magentaPresets.angle = -75;
+  this.magenta         = new grGrid ( magentaPresets );
 
-// Create a grid with settings
-function grInitGridWithSettings(settings){
-  var allSettings = grFillSettingsOptionals(settings),
-      newGrid = {
-        group       : 0,
-        points      : [],
-        dots        : [],
-        dotSymbol   : [],
-        distance    : settings.distance,
-        maxSize     : settings.maxSize,
-        color       : settings.color,
-        angle       : settings.angle,
-        initial     : settings.initial
-      };
+  yellowPresets.color  = [255,240,3];
+  yellowPresets.angle  = 0;
+  this.yellow          = new grGrid ( yellowPresets );
 
-  newGrid.points      = grGetPointsForSettings(allSettings);
-  newGrid.dotSymbol   = grGetDotSymbol(allSettings.color, allSettings.initial);
-  newGrid.dots        = grGetDotsForGrid(newGrid);
-
-  newGrid.group = new paper.Group(newGrid.dots);
-  newGrid.group.blendMode = 'multiply';
-  newGrid.group.rotate(newGrid.angle);
-
-  return newGrid;
+  blackPresets.color   = [10,10,10];
+  blackPresets.angle   = -45;
+  this.black           = new grGrid ( blackPresets );
 
 }
 
-function grGetPointsForSettings(settings){
 
-  var points      = [],
-      extraPoints = 1,
-      distance    = settings.distance,
-      offsetX     = settings.offsetX  - (distance * (extraPoints * 3)),
-      offsetY     = settings.offsetY  - (distance * (extraPoints * 3)),
-      rows        = settings.rows     + (extraPoints * 2),
-      cols        = settings.columns  + (extraPoints * 2);
 
+// Grid creation, taking settings from dictionary
+function grGrid(settings){
+  // Container settings
+  this.width        = (settings.width)    ? settings.width    : 300;
+  this.height       = (settings.height)   ? settings.height   : 300;
+  // Grid settings
+  this.distance     = (settings.distance) ? settings.distance : 20;
+  this.rows         = (settings.rows)     ? settings.rows     : 20;
+  this.columns      = (settings.columns)  ? settings.columns  : 20;
+  this.angle        = (settings.angle)    ? settings.angle    : 0;
+  this.color        = (settings.color)    ? settings.color    : [50,50,50];
+  // Dot settings
+  this.offsetX      = (settings.offsetX)  ? settings.offsetX  : 0;
+  this.offsetY      = (settings.offsetY)  ? settings.offsetY  : 0;
+  this.maxSize      = (settings.maxSize)  ? settings.maxSize  : this.distance * 1.45;
+  this.value        = (settings.value)    ? settings.value    : this.maxSize/2;
+
+
+  // ------------ Setting up the view --------------------
+
+  // 1. Create the point symbol
+  var initialPoint        = new paper.Path.Circle(new paper.Point(0,0), this.value);
+  initialPoint.fillColor  = new paper.Color(this.color[0]/255, this.color[1]/255, this.color[2]/255);
+  this.pointSymbol        = new paper.Symbol(initialPoint);
+
+  // 2. Get coordinates & create points
+  this.points     = [];
+  var extraPoints = 1,
+      _gridX      = this.offsetX - (this.distance * (extraPoints * 3)),
+      _gridY      = this.offsetY - (this.distance * (extraPoints * 3));
   // Loop for rows...
-  for (var rC = 0; rC < rows; rC++) {
+  for (var rC = 0; rC < (this.rows + (extraPoints * 2)); rC++) {
     // ... and for columns
-    for (var cC = 0; cC < cols; cC++) {
+    for (var cC = 0; cC < (this.columns + (extraPoints * 2)); cC++) {
 
-      var pointX    = offsetX + (distance * rC),        // X for the new point
-          pointY    = offsetY + (distance * cC),        // Y for the new point
-          newPoint  = new paper.Point(pointX, pointY);  // create the point
+      var pointX = _gridX + (this.distance * rC),         // X for the new point
+          pointY = _gridY + (this.distance * cC),         // Y for the new point
+          //coords = new paper.Point(pointX, pointY),       // create the point
+          aPoint = this.pointSymbol.place( new paper.Point(pointX, pointY) );
 
-      points.push(newPoint);                            // add it to the array
+      this.points.push(aPoint);
 
     }
 
   }
 
-  return points;
+  // Group settings
+  this.group = new paper.Group(this.points);
+  this.group.blendMode = 'multiply';
+  this.group.rotate(this.angle);
 
-}
 
-function grGetDotsForGrid(grid){
-  var dots = [],
-      points = grid.points,
-      symbol = grid.dotSymbol;
+  // methods
+  this.updateValue = function ( value ) {
+    var currentSize = this.pointSymbol.definition.bounds.width,
+        targetSize  = value * this.maxSize,
+        delta       = targetSize / currentSize;
 
-  for (var i = 0; i < points.length; i++) {
-    var aCircle = symbol.place(points[i]);
-    dots.push(aCircle);
-  }
-
-  return dots;
-}
-
-function grGetDotSymbol(color, initialSize){
-  var initialDot = new paper.Path.Circle(new paper.Point(0,0), initialSize);
-  initialDot.fillColor = new paper.Color(color[0]/255, color[1]/255, color[2]/255);
-
-  var symbol = new paper.Symbol(initialDot);
-  return symbol;
-}
-
-function grSetValueForGrid(grid,size){
-  var dotSymbol     = grid.dotSymbol,
-      maxSize       = grid.maxSize,
-      currentSize   = dotSymbol.definition.bounds.width,
-      targetSize    = size * maxSize,
-      delta         = targetSize / currentSize;
-
-  if (size == 0) {
-    dotSymbol.definition.opacity = 0;
-  } else {
-    if (dotSymbol.definition.opacity == 0) {
-      dotSymbol.definition.opacity = 1;
+    if (value == 0) {
+      this.pointSymbol.definition.opacity = 0;
+    } else {
+      if (this.pointSymbol.definition.opacity == 0) {
+        this.pointSymbol.definition.opacity = 1;
+      }
+      this.pointSymbol.definition.scale(delta);
     }
-    dotSymbol.definition.scale(delta);
+    paper.view.update();
   }
 
-  paper.view.update();
+  return this;
 
 }

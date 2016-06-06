@@ -8,26 +8,11 @@ window.onload = function() {
   // create the paper object
   paper.setup(canvasHalftones);
 
-  // create the grids
-  gridCyan = grInitGridWithSettings({
-      color     : [0,163,218],
-      angle     : -15
-    });
-
-  gridMagenta = grInitGridWithSettings({
-      color     : [216,18,125],
-      angle     : -75
-    });
-
-  gridYellow = grInitGridWithSettings({
-      color     : [255,240,3],
-      angle     : 0
-    });
-
-  gridBlack = grInitGridWithSettings({
-      color     : [10,10,10],
-      angle     : -45
-    });
+  var halftones = new grFourGrid({});
+  gridCyan    = halftones.cyan;
+  gridMagenta = halftones.magenta;
+  gridYellow  = halftones.yellow;
+  gridBlack   = halftones.black;
 
   // Update canvas
   paper.view.update();
@@ -40,19 +25,19 @@ window.onload = function() {
       blackSlider   = document.getElementById("slider--black");
 
   cyanSlider.addEventListener('input',function(){
-    grSetValueForGrid(gridCyan,(cyanSlider.value/100))
+    gridCyan.updateValue(cyanSlider.value/100)
   })
 
   yellowSlider.addEventListener('input',function(){
-    grSetValueForGrid(gridYellow,(yellowSlider.value/100))
+    gridYellow.updateValue(yellowSlider.value/100)
   })
 
   magentaSlider.addEventListener('input',function(){
-    grSetValueForGrid(gridMagenta,(magentaSlider.value/100))
+    gridMagenta.updateValue(magentaSlider.value/100)
   })
 
   blackSlider.addEventListener('input',function(){
-    grSetValueForGrid(gridBlack,(blackSlider.value/100))
+    gridBlack.updateValue(blackSlider.value/100)
   })
 
 }
