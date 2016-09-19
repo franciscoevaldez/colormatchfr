@@ -29,19 +29,19 @@ function grFourGrid(overrides){
 // Grid creation, taking settings from dictionary
 function grGrid(settings){
   // Container settings
-  this.width        = (settings.width)    ? settings.width    : 300;
-  this.height       = (settings.height)   ? settings.height   : 300;
+  this.width        = (settings.width)        ? settings.width        : 300;
+  this.height       = (settings.height)       ? settings.height       : 300;
   // Grid settings
-  this.distance     = (settings.distance) ? settings.distance : 20;
-  this.rows         = (settings.rows)     ? settings.rows     : 20;
-  this.columns      = (settings.columns)  ? settings.columns  : 20;
-  this.angle        = (settings.angle)    ? settings.angle    : 0;
-  this.color        = (settings.color)    ? settings.color    : [50,50,50];
+  this.distance     = (settings.distance)     ? settings.distance     : 20;
+  this.rows         = (settings.rowsAndCols)  ? settings.rowsAndCols  : 20;
+  this.columns      = this.rows;
+  this.angle        = (settings.angle)        ? settings.angle        : 0;
+  this.color        = (settings.color)        ? settings.color        : [50,50,50];
   // Dot settings
-  this.offsetX      = (settings.offsetX)  ? settings.offsetX  : 0;
-  this.offsetY      = (settings.offsetY)  ? settings.offsetY  : 0;
-  this.maxSize      = (settings.maxSize)  ? settings.maxSize  : this.distance * 1.45;
-  this.value        = (settings.value)    ? settings.value    : this.maxSize/2;
+  this.offsetX      = (settings.offsetX)      ? settings.offsetX      : 0;
+  this.offsetY      = (settings.offsetY)      ? settings.offsetY      : 0;
+  this.maxSize      = (settings.maxSize)      ? settings.maxSize      : this.distance * 1.45;
+  this.value        = (settings.value)        ? settings.value        : this.maxSize/2;
 
 
   // ------------ Setting up the view --------------------

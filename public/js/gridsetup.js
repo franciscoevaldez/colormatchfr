@@ -8,7 +8,12 @@ window.onload = function() {
   // create the paper object
   paper.setup(canvasHalftones);
 
-  var halftones = new grFourGrid({});
+  var halftones = new grFourGrid({
+    width:        500,
+    height:       500,
+    distance:     40,
+    rowsAndCols:  15
+  });
   gridCyan    = halftones.cyan;
   gridMagenta = halftones.magenta;
   gridYellow  = halftones.yellow;
