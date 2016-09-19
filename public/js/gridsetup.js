@@ -8,39 +8,16 @@ window.onload = function() {
   // create the paper object
   paper.setup(canvasHalftones);
 
-  // create the grids
-  gridCyan = mtCreateGridWithSettings({
-      distance  : 20,
-      color     : [0,163,218],
-      angle     : -15,
-      initial   : 9
-    });
-
-  gridMagenta = mtCreateGridWithSettings({
-      distance  : 20,
-      color     : [216,18,125],
-      angle     : -75,
-      initial   : 7
-    });
-
-  gridYellow = mtCreateGridWithSettings({
-      distance  : 20,
-      color     : [255,240,3],
-      angle     : 0,
-      initial   : 9
-    });
-
-  gridBlack = mtCreateGridWithSettings({
-      distance  : 20,
-      color     : [10,10,10],
-      angle     : -45,
-      initial   : 1
-    });
-
-  mtDisplayGrid(gridCyan)
-  mtDisplayGrid(gridMagenta)
-  mtDisplayGrid(gridBlack)
-  mtDisplayGrid(gridYellow)
+  var halftones = new grFourGrid({
+    width:        500,
+    height:       500,
+    distance:     40,
+    rowsAndCols:  15
+  });
+  gridCyan    = halftones.cyan;
+  gridMagenta = halftones.magenta;
+  gridYellow  = halftones.yellow;
+  gridBlack   = halftones.black;
 
   // Update canvas
   paper.view.update();
@@ -53,19 +30,19 @@ window.onload = function() {
       blackSlider   = document.getElementById("slider--black");
 
   cyanSlider.addEventListener('input',function(){
-    mtResizeGrid(gridCyan,(cyanSlider.value/100))
+    gridCyan.updateValue(cyanSlider.value/100)
   })
 
   yellowSlider.addEventListener('input',function(){
-    mtResizeGrid(gridYellow,(yellowSlider.value/100))
+    gridYellow.updateValue(yellowSlider.value/100)
   })
 
   magentaSlider.addEventListener('input',function(){
-    mtResizeGrid(gridMagenta,(magentaSlider.value/100))
+    gridMagenta.updateValue(magentaSlider.value/100)
   })
 
   blackSlider.addEventListener('input',function(){
-    mtResizeGrid(gridBlack,(blackSlider.value/100))
+    gridBlack.updateValue(blackSlider.value/100)
   })
 
 }
