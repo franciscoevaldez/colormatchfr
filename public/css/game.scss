@@ -9,6 +9,18 @@ body{
   font-family: Helvetica, Arial, sans-serif;
 }
 
+.gameInfo{
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  color: white;
+
+  a {
+    color: inherit;
+  }
+
+}
+
 .colorPair{
   display: flex;
   width: 100vw;

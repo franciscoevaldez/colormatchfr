@@ -129,6 +129,6 @@ function bindSliders(){
   confirmButton.addEventListener('click', checkColorMatch);
 
   newGameButton = document.getElementById('btnNewGame');
-  newGameButton.addEventListener('click', startNewGame);
+  newGameButton.addEventListener('click', fxGameBegin);
 
 }

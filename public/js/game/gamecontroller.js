@@ -52,11 +52,17 @@ function checkColorMatch(){
 
 }
 
-function startNewGame(){
-  var resultContainer = document.getElementById('result__JS__container');
+function updateInfoForGame( aGame ){
+  var resultContainer = document.getElementById('result__JS__container'),
+      gameInfoTitle = document.getElementById('gameInfo__JS__level'),
+      gameInfoScore = document.getElementById('gameInfo__JS__score');
 
-  targetCYMK = getRandomColor();
-  updateTargetToCMYK(targetCYMK);
+  //targetCYMK = getRandomColor();
+  //updateTargetToCMYK(targetCYMK);
+
+  gameInfoTitle.innerHTML = "Nivel " + (aGame.level + 1) + " " + aGame.title;
 
   resultContainer.className = "result result--noshow";
+
+
 }

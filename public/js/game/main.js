@@ -5,13 +5,15 @@ var colCyan   = new paper.Color(0/255, 163/255, 218/255),
     colBlack  = new paper.Color(0,0,0),
     colBase   = new paper.Color(1,1,1),
     targetCYMK,
-    changeButton, confirmButton;
+    changeButton, confirmButton,
+    gameLevels, gameScore, currentGame;
 
 
 window.onload = function() {
 
   // declare the grid canvas
   var canvas = document.getElementById('colorPair__canvas');
+  gameLevels = fxGetGameLevels();
 
   // create the paper object
   paper.setup(canvas);
@@ -22,5 +24,14 @@ window.onload = function() {
 
   // Update canvas
   paper.view.update();
+
+  // begin game
+  currentGame = fxGameBegin();
+  targetCYMK = getRandomColorForDifficulty(currentGame.difficulty);
+  updateTargetToCMYK(targetCYMK);
+  //setupView();
+  //startNewGame();
+
+
 
 }
