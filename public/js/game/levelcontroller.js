@@ -58,8 +58,32 @@ function fxGameBegin () {
 
   updateInfoForGame( newGame );
 
+  targetCYMK = getRandomColorForDifficulty(newGame.difficulty);
+  updateTargetToCMYK(targetCYMK);
+
   return newGame;
 
 }
 
-function fxGameNextLevel (withDeltaE){};
+function fxGameNextLevel (){
+
+  if (currentGame) {
+
+    if (currentGame.level <= 9) {
+      currentGame.level ++;
+      currentGame.title = gameLevels[currentGame.level].description;
+      currentGame.difficulty = gameLevels[currentGame.level].difficulty;
+
+      updateInfoForGame (currentGame);
+
+      targetCYMK = getRandomColorForDifficulty(currentGame.difficulty);
+      updateTargetToCMYK(targetCYMK);
+
+      console.log("current level: " + currentGame.level);
+    } else {
+      console.log("game done");
+    }
+
+  }
+
+};

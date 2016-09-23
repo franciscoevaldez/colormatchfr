@@ -27,8 +27,8 @@ window.onload = function() {
 
   // begin game
   currentGame = fxGameBegin();
-  targetCYMK = getRandomColorForDifficulty(currentGame.difficulty);
-  updateTargetToCMYK(targetCYMK);
+  //targetCYMK = getRandomColorForDifficulty(currentGame.difficulty);
+  //updateTargetToCMYK(targetCYMK);
   //setupView();
   //startNewGame();
 

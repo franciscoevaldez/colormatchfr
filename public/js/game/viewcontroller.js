@@ -123,12 +123,15 @@ function bindSliders(){
   })
 
   changeButton = document.getElementById('btnChange');
-  confirmButton = document.getElementById('btnCheck');
+  if (changeButton) {changeButton.addEventListener('click', changeTargetColor);}
 
-  changeButton.addEventListener('click', changeTargetColor);
-  confirmButton.addEventListener('click', checkColorMatch);
+  confirmButton = document.getElementById('btnCheck');
+  if (confirmButton) {confirmButton.addEventListener('click', checkColorMatch);}
 
   newGameButton = document.getElementById('btnNewGame');
-  newGameButton.addEventListener('click', fxGameBegin);
+  if(newGameButton){newGameButton.addEventListener('click', fxGameBegin);}
+
+  nextLevelButton = document.getElementById('btnNextLevel');
+  if(nextLevelButton){nextLevelButton.addEventListener('click', fxGameNextLevel);}
 
 }
