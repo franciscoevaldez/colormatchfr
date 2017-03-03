@@ -1,89 +1,100 @@
-// Grid handling functions
+// fourGrid creation
+function grFourGrid(overrides){
 
-// Setting up a point grid
-function mtCreateGridWithSettings(settings){
+  var cyanPresets     = overrides,
+      magentaPresets  = overrides,
+      yellowPresets   = overrides,
+      blackPresets    = overrides;
 
-  var grid = [],
-    gridPoints = [];
+  cyanPresets.color    = [0,163,218];
+  cyanPresets.angle    = -15;
+  this.cyan            = new grGrid ( cyanPresets );
 
-  // check optionals
-  settings.distance = (settings.distance) ? settings.distance : 20;
-  settings.rows     = (settings.rows)     ? settings.rows     : 20;
-  settings.columns  = (settings.columns)  ? settings.columns  : 20;
-  settings.offsetX  = (settings.offsetX)  ? settings.offsetX  : 0;
-  settings.offsetY  = (settings.offsetY)  ? settings.offsetY  : 0;
-  settings.angle    = (settings.angle)    ? settings.angle    : 0;
-  settings.initial  = (settings.initial)  ? settings.initial  : 5;
-  settings.color    = (settings.color)    ? settings.color    : [50,50,50];
-  settings.maxSize  = (settings.maxSize)  ? settings.maxSize  : 28;
+  magentaPresets.color = [216,18,125];
+  magentaPresets.angle = -75;
+  this.magenta         = new grGrid ( magentaPresets );
 
-  var compensatedRows = settings.rows + 10,
-      compensatedCols = settings.columns + 10,
-      compensatedOffsetX = settings.offsetX - (5 * settings.distance),
-      compensatedOffsetY = settings.offsetY - (5 * settings.distance)
-  ;
+  yellowPresets.color  = [255,240,3];
+  yellowPresets.angle  = 0;
+  this.yellow          = new grGrid ( yellowPresets );
 
-  for (var rC = 0; rC < compensatedRows; rC++) {
-    // loop for columns
-    for (var cC = 0; cC < compensatedCols; cC++) {
+  blackPresets.color   = [10,10,10];
+  blackPresets.angle   = -45;
+  this.black           = new grGrid ( blackPresets );
 
-      var newX = (settings.distance * rC) + compensatedOffsetX,
-        newY = (settings.distance * cC) + compensatedOffsetY,
-        newPoint = new paper.Point(newX, newY);
+}
 
-      gridPoints.push(newPoint);
+
+
+// Grid creation, taking settings from dictionary
+function grGrid(settings){
+  // Container settings
+  this.width        = (settings.width)        ? settings.width        : 300;
+  this.height       = (settings.height)       ? settings.height       : 300;
+  // Grid settings
+  this.distance     = (settings.distance)     ? settings.distance     : 20;
+  this.rows         = (settings.rowsAndCols)  ? settings.rowsAndCols  : 20;
+  this.columns      = this.rows;
+  this.angle        = (settings.angle)        ? settings.angle        : 0;
+  this.color        = (settings.color)        ? settings.color        : [50,50,50];
+  // Dot settings
+  this.offsetX      = (settings.offsetX)      ? settings.offsetX      : 0;
+  this.offsetY      = (settings.offsetY)      ? settings.offsetY      : 0;
+  this.maxSize      = (settings.maxSize)      ? settings.maxSize      : this.distance * 1.45;
+  this.value        = (settings.value)        ? settings.value        : this.maxSize/2;
+
+
+  // ------------ Setting up the view --------------------
+
+  // 1. Create the point symbol
+  var initialPoint        = new paper.Path.Circle(new paper.Point(0,0), this.value);
+  initialPoint.fillColor  = new paper.Color(this.color[0]/255, this.color[1]/255, this.color[2]/255);
+  this.pointSymbol        = new paper.Symbol(initialPoint);
+
+  // 2. Get coordinates & create points
+  this.points     = [];
+  var extraPoints = 1,
+      _gridX      = this.offsetX - (this.distance * (extraPoints * 3)),
+      _gridY      = this.offsetY - (this.distance * (extraPoints * 3));
+  // Loop for rows...
+  for (var rC = 0; rC < (this.rows + (extraPoints * 2)); rC++) {
+    // ... and for columns
+    for (var cC = 0; cC < (this.columns + (extraPoints * 2)); cC++) {
+
+      var pointX = _gridX + (this.distance * rC),         // X for the new point
+          pointY = _gridY + (this.distance * cC),         // Y for the new point
+          //coords = new paper.Point(pointX, pointY),       // create the point
+          aPoint = this.pointSymbol.place( new paper.Point(pointX, pointY) );
+
+      this.points.push(aPoint);
 
     }
 
   }
 
-  var gridDots = mtGetDotsFromPoints(gridPoints, settings.initial);
+  // Group settings
+  this.group = new paper.Group(this.points);
+  this.group.blendMode = 'multiply';
+  this.group.rotate(this.angle);
 
-  grid = {
-    points      : gridPoints,
-    dots        : gridDots,
-    maxDotSize  : settings.distance,
-    maxSize     : settings.maxSize,
-    color       : settings.color,
-    angle       : settings.angle,
-    initial     : settings.initial
+
+  // methods
+  this.updateValue = function ( value ) {
+    var currentSize = this.pointSymbol.definition.bounds.width,
+        targetSize  = value * this.maxSize,
+        delta       = targetSize / currentSize;
+
+    if (value == 0) {
+      this.pointSymbol.definition.opacity = 0;
+    } else {
+      if (this.pointSymbol.definition.opacity == 0) {
+        this.pointSymbol.definition.opacity = 1;
+      }
+      this.pointSymbol.definition.scale(delta);
+    }
+    paper.view.update();
   }
 
-  return grid;
-
-}
-
-function mtGetDotsFromPoints(points, initialSize){
-  // get grid points
-  var dots = [];
-
-  for (var i = 0; i < points.length; i++) {
-    var aCircle = new paper.Path.Circle(points[i], initialSize);
-    dots.push(aCircle)
-  }
-
-  return dots;
-}
-
-// Create the grid as a group and add them to the view
-function mtDisplayGrid(grid){
-  var gridGroup = new paper.Group(grid.dots);
-  gridGroup.fillColor = new paper.Color(grid.color[0]/255, grid.color[1]/255, grid.color[2]/255);
-  gridGroup.blendMode = 'multiply';
-  gridGroup.rotate(grid.angle);
-}
-
-function mtResizeGrid(grid,size){
-  var gridDots      = grid.dots,
-      maxSize       = grid.maxSize,
-      currentSize   = gridDots[0].bounds.width,
-      targetSize    = size * maxSize,
-      delta         = targetSize / currentSize;
-
-  for (var dC = 0; dC < gridDots.length; dC++) {
-    gridDots[dC].scale(delta);
-  }
-
-  paper.view.update();
+  return this;
 
 }

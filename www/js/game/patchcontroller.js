@@ -98,15 +98,72 @@ function randomColorWithLightFour(){
 }
 
 function getRandomColor(){
-  var randomColorsArray = [randomColorWithAbsoluteDominant(),
+  /*var randomColorsArray = [randomColorWithAbsoluteDominant(),
+                          randomColorWithDominant(),
+                          randomColorWithPair(),
+                          randomColorWithScale(),
+                          randomColorWithLightFour()]*/
+
+  var callerIndex = Math.floor( Math.random() * 5 );
+
+  switch (callerIndex) {
+    case 0:
+      return randomColorWithAbsoluteDominant();
+      break;
+    case 1:
+      return randomColorWithDominant();
+      break;
+    case 2:
+      return randomColorWithPair();
+      break;
+    case 3:
+      return randomColorWithScale();
+      break;
+    case 4:
+      return randomColorWithLightFour();
+      break;
+    default:
+      return randomColorWithAbsoluteDominant();
+      break;
+
+  }
+
+
+  return randomColorsArray[callerIndex];
+}
+
+function getRandomColorForDifficulty( level ){
+  /*var randomColorsArray = [randomColorWithAbsoluteDominant(),
                           randomColorWithDominant(),
                           randomColorWithPair(),
                           randomColorWithScale(),
                           randomColorWithLightFour()]
 
-  var callerIndex = Math.floor(Math.random() * 6 );
+  return randomColorsArray[ level ];*/
 
-  return randomColorsArray[callerIndex];
+  switch (level) {
+    case 0:
+      return randomColorWithAbsoluteDominant();
+      break;
+    case 1:
+      return randomColorWithDominant();
+      break;
+    case 2:
+      return randomColorWithPair();
+      break;
+    case 3:
+      return randomColorWithScale();
+      break;
+    case 4:
+      return randomColorWithLightFour();
+      break;
+    default:
+      return randomColorWithAbsoluteDominant();
+      break;
+
+  }
+
+
 }
 
 
