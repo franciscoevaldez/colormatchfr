@@ -35,7 +35,6 @@
 		div#bars div.bar--blue{background-color: #00F;}
 
 		div#controls{
-			background-color: #005;
 			height: 3em;
 			border-top: 3pt solid black;
 			display: flex;
@@ -53,7 +52,7 @@
 		}
 
 		input.control--slider{
-			/*width: 85%;*/
+			width: 85%;
 		}
 
 
@@ -97,6 +96,27 @@
 		</div>
 
 	</div>
+
+	<script src="js/jquery.js"></script>
+
+	<script>
+
+		$("#slider--red").change(function() {
+		    var newValue = this.value;
+		    $('.bar--red').css('opacity', newValue/100);
+		});
+
+		$("#slider--green").change(function() {
+		    var newValue = this.value;
+		    $('.bar--green').css('opacity', newValue/100);
+		});
+
+		$("#slider--blue").change(function() {
+		    var newValue = this.value;
+		    $('.bar--blue').css('opacity', newValue/100);
+		});
+
+	</script>
 	
 </body>
 </html>
