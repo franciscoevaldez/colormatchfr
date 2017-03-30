@@ -38,11 +38,7 @@
 			height: 3em;
 			border-top: 3pt solid black;
 			display: flex;
-			flex-direction: row;
-		}
-
-		div.menu{
-			width: 3em;
+			flex-direction: column;
 		}
 
 		div.control{
@@ -58,64 +54,69 @@
 
 	</style>
 </head>
-
-
+		
 <body>
 
-	<div id="content">
+	<div id="container">
 		
-		<div id="bars">
-			<div class="bar bar--red"></div>
-			<div class="bar bar--green"></div>
-			<div class="bar bar--blue"></div>
-			<div class="bar bar--red"></div>
-			<div class="bar bar--green"></div>
-			<div class="bar bar--blue"></div>
-			<div class="bar bar--red"></div>
-			<div class="bar bar--green"></div>
-			<div class="bar bar--blue"></div>
-			<div class="bar bar--red"></div>
-			<div class="bar bar--green"></div>
-			<div class="bar bar--blue"></div>
+		<div id="workarea">
+			
+			<div id="mixcontainer">
+				
+				<div id="mixer">
+					<div class="bar bar--red"></div>
+					<div class="bar bar--green"></div>
+					<div class="bar bar--blue"></div>
+					<div class="bar bar--red"></div>
+					<div class="bar bar--green"></div>
+					<div class="bar bar--blue"></div>
+					<div class="bar bar--red"></div>
+					<div class="bar bar--green"></div>
+					<div class="bar bar--blue"></div>
+					<div class="bar bar--red"></div>
+					<div class="bar bar--green"></div>
+					<div class="bar bar--blue"></div>
+				</div>
+			
+			</div>
+			
 		</div>
-
+		
 		<div id="controls">
-			<div class="menu"></div>
+			<div class="menu">
+				Nuevo .. Comparar
+			</div>
 
 			<div class="control control--red">
-				R <input class="control--slider" type="range" name="slider--red" id="slider--red" value="100" min="0" max="100">
+				R <input class="control--slider" type="range" name="slider--red" id="slider--red" value="50" min="0" max="100">
 			</div>
 
 			<div class="control control--green">
-				G <input class="control--slider" type="range" name="slider--green" id="slider--green" value="100" min="0" max="100">
+				G <input class="control--slider" type="range" name="slider--green" id="slider--green" value="50" min="0" max="100">
 			</div>
 
 			<div class="control control--blue">
-				B <input class="control--slider" type="range" name="slider--blue" id="slider--blue" value="100" min="0" max="100">
+				B <input class="control--slider" type="range" name="slider--blue" id="slider--blue" value="50" min="0" max="100">
 			</div>
 		</div>
-
+		
 	</div>
-
+	
 	<script src="js/jquery.js"></script>
 
 	<script>
-
 		$("#slider--red").change(function() {
 		    var newValue = this.value;
 		    $('.bar--red').css('opacity', newValue/100);
 		});
-
 		$("#slider--green").change(function() {
 		    var newValue = this.value;
 		    $('.bar--green').css('opacity', newValue/100);
 		});
-
 		$("#slider--blue").change(function() {
 		    var newValue = this.value;
 		    $('.bar--blue').css('opacity', newValue/100);
 		});
-
 	</script>
 	
 </body>
