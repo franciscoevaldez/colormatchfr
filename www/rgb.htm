@@ -101,7 +101,7 @@
 		      border-radius: 0.25em;
 		      padding: 0.5em 0.75em;
 		      text-decoration: none;
-		      margin: 0 3em;
+		      margin: 0 1em;
 		    }
 
 
@@ -173,6 +173,14 @@
 		    var newValue = this.value;
 		    $('.bar--blue').css('opacity', newValue/100);
 		});
+		$("#btn__new").click(function(){
+		      var newRed = Math.round(Math.random() * 255),
+			  newGreen = Math.round(Math.random() * 255),
+			  newBlue = Math.round(Math.random() * 255);
+		      $("#workarea").css('background', 'green')
+		      $("#workarea").css('background-color', 'red')
+		      $("#workarea").css('background-color', 'rgb(' + newRed + ',' + newGreen + ',' + newBlue + ')')
+		    })
 	</script>
 	
 </body>
