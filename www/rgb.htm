@@ -73,7 +73,7 @@
 		div#bars div.bar--blue{background-color: #00F;}
 
 		div#controls{
-			height: 3em;
+			height: 4em;
 			border-top: 3pt solid black;
 			display: flex;
 			flex-direction: column;
@@ -83,11 +83,25 @@
 			flex-grow: 1;
 			text-align: center;
 			vertical-align: middle;
+			min-height: 1em;
 		}
 
 		input.control--slider{
 			width: 85%;
 		}
+		
+		div.menu{
+		      display: flex;
+		      flex-direction: row;
+		    }
+
+		    div.menu>a{
+		      flex-grow: 1;
+		    }
+
+		    div.menu>a:first-child{
+		      border-right: 1px solid #666;
+		    }
 
 
 	</style>
@@ -121,9 +135,6 @@
 		</div>
 		
 		<div id="controls">
-			<div class="menu">
-				Nuevo .. Comparar
-			</div>
 
 			<div class="control control--red">
 				R <input class="control--slider" type="range" name="slider--red" id="slider--red" value="50" min="0" max="100">
@@ -136,6 +147,12 @@
 			<div class="control control--blue">
 				B <input class="control--slider" type="range" name="slider--blue" id="slider--blue" value="50" min="0" max="100">
 			</div>
+			
+			<div class="menu">
+				<a href="#" id="btn__new">Nuevo</a>
+				<a href="#" id="btn__compare">Comparar</a>
+			</div>
+			
 		</div>
 		
 	</div>
