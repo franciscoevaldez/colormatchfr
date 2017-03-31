@@ -160,27 +160,65 @@
 	
 	<script src="js/jquery.js"></script>
 
+	<script src="js/rgbjs.js"></script>
+
 	<script>
+
+		var targetRGB, userRGB,
+				targetLAB, userLAB;
+
 		$("#slider--red").change(function() {
 		    var newValue = this.value;
-		    $('.bar--red').css('opacity', newValue/100);
+		    $('.bar--red').css('opacity', newValue/255);
 		});
 		$("#slider--green").change(function() {
 		    var newValue = this.value;
-		    $('.bar--green').css('opacity', newValue/100);
+		    $('.bar--green').css('opacity', newValue/255);
 		});
 		$("#slider--blue").change(function() {
 		    var newValue = this.value;
-		    $('.bar--blue').css('opacity', newValue/100);
+		    $('.bar--blue').css('opacity', newValue/255);
 		});
-		$("#btn__new").click(function(){
-		      var newRed = Math.round(Math.random() * 255),
-			  newGreen = Math.round(Math.random() * 255),
-			  newBlue = Math.round(Math.random() * 255);
-		      $("#workarea").css('background', 'green')
-		      $("#workarea").css('background-color', 'red')
-		      $("#workarea").css('background-color', 'rgb(' + newRed + ',' + newGreen + ',' + newBlue + ')')
-		    })
+
+    $("#btn__new").click(function(){
+      var newRed = Math.round(Math.random() * 255),
+          newGreen = Math.round(Math.random() * 255),
+          newBlue = Math.round(Math.random() * 255);
+
+			targetRGB = {
+				red : newRed,
+				green : newGreen,
+				blue : newBlue
+			};
+
+			targetLAB = getLABfromRGBobject(targetRGB);
+
+      $("#workarea").css('background-color', 'rgb(' + newRed + ',' + newGreen + ',' + newBlue + ')')
+    })
+
+		$("#btn__compare").click(function(){
+
+			var sliderR = document.getElementById("slider--red"),
+					sliderG = document.getElementById("slider--green"),
+					sliderB = document.getElementById("slider--blue");
+
+			var valueR = sliderR.value,
+					valueG = sliderG.value,
+					valueB = sliderB.value;
+
+			userRGB = {
+				red : valueR,
+				green : valueG,
+				blue : valueB
+			};
+
+			userLAB = getLABfromRGBobject(userRGB);
+
+			var deltaE = getDeltaEforPair(targetLAB, userLAB);
+
+			window.alert(deltaE)
+
+    })
 	</script>
 	
 </body>
