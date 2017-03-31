@@ -73,10 +73,11 @@
 		div#bars div.bar--blue{background-color: #00F;}
 
 		div#controls{
-			height: 4em;
+			height: 10em;
 			border-top: 3pt solid black;
 			display: flex;
 			flex-direction: column;
+			padding-top: 1.2em;
 		}
 
 		div.control{
@@ -91,16 +92,16 @@
 		}
 		
 		div.menu{
-		      display: flex;
-		      flex-direction: row;
-		    }
-
-		    div.menu>a{
-		      flex-grow: 1;
-		    }
-
-		    div.menu>a:first-child{
-		      border-right: 1px solid #666;
+			text-align: center;
+		}
+		
+		div.menu>a{
+		      color: #CCC;
+		      border: 1px solid #ccc;
+		      border-radius: 0.25em;
+		      padding: 0.5em 0.75em;
+		      text-decoration: none;
+		      margin: 0 3em;
 		    }
 
 
@@ -137,18 +138,18 @@
 		<div id="controls">
 
 			<div class="control control--red">
-				R <input class="control--slider" type="range" name="slider--red" id="slider--red" value="50" min="0" max="100">
+				R <input class="control--slider" type="range" name="slider--red" id="slider--red" value="100" min="0" max="100">
 			</div>
 
 			<div class="control control--green">
-				G <input class="control--slider" type="range" name="slider--green" id="slider--green" value="50" min="0" max="100">
+				G <input class="control--slider" type="range" name="slider--green" id="slider--green" value="100" min="0" max="100">
 			</div>
 
 			<div class="control control--blue">
-				B <input class="control--slider" type="range" name="slider--blue" id="slider--blue" value="50" min="0" max="100">
+				B <input class="control--slider" type="range" name="slider--blue" id="slider--blue" value="100" min="0" max="100">
 			</div>
 			
-			<div class="menu">
+			<div class="control menu">
 				<a href="#" id="btn__new">Nuevo</a>
 				<a href="#" id="btn__compare">Comparar</a>
 			</div>
