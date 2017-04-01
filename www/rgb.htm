@@ -195,7 +195,9 @@
 
 		/* red track */
 		.control--red input[type=range]::-webkit-slider-runnable-track {
-		  background: #F00;
+				background: -webkit-linear-gradient(left, #300 0%, #F00 100%);
+				background: -o-linear-gradient(left, #300 0%, #F00 100%);
+				background: linear-gradient(to right, #300 0%, #F00 100%);
 		}
 		.control--red input[type=range]::-moz-range-track {
 		  background: #F00;
@@ -209,7 +211,9 @@
 
 		/* green track */
 		.control--green input[type=range]::-webkit-slider-runnable-track {
-		  background: #0F0;
+			background: -webkit-linear-gradient(left, #030 0%, #0F0 100%);
+			background: -o-linear-gradient(left, #030 0%, #0F0 100%);
+			background: linear-gradient(to right, #030 0%, #0F0 100%);
 		}
 		.control--green input[type=range]::-moz-range-track {
 		  background: #0F0;
@@ -223,7 +227,9 @@
 
 		/* blue track */
 		.control--blue input[type=range]::-webkit-slider-runnable-track {
-		  background: #00F;
+			background: -webkit-linear-gradient(left, #003 0%, #00F 100%);
+			background: -o-linear-gradient(left, #003 0%, #00F 100%);
+			background: linear-gradient(to right, #003 0%, #00F 100%);
 		}
 		.control--blue input[type=range]::-moz-range-track {
 		  background: #00F;
