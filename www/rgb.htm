@@ -305,6 +305,12 @@
 		var targetRGB, userRGB,
 				targetLAB, userLAB;
 
+		function getNewTargetColor(){
+			targetRGB = getRandomColor()
+			targetLAB = getLABfromRGBobject(targetRGB);
+      $("#workarea").css('background-color', 'rgb(' + targetRGB.red + ',' + targetRGB.green + ',' + targetRGB.blue + ')')
+		}
+
 		$("#slider--red").change(function() {
 		    var newValue = this.value;
 		    $('.bar--red').css('opacity', newValue/255);
@@ -318,21 +324,7 @@
 		    $('.bar--blue').css('opacity', newValue/255);
 		});
 
-    $("#btn__new").click(function(){
-      var newRed = Math.round(Math.random() * 255),
-          newGreen = Math.round(Math.random() * 255),
-          newBlue = Math.round(Math.random() * 255);
-
-			targetRGB = {
-				red : newRed,
-				green : newGreen,
-				blue : newBlue
-			};
-
-			targetLAB = getLABfromRGBobject(targetRGB);
-
-      $("#workarea").css('background-color', 'rgb(' + newRed + ',' + newGreen + ',' + newBlue + ')')
-    })
+    $("#btn__new").click(getNewTargetColor)
 
 		$("#btn__compare").click(function(){
 
@@ -357,6 +349,9 @@
 			window.alert(deltaE)
 
     })
+
+		getNewTargetColor()
+
 	</script>
 
 </body>
