@@ -22,7 +22,7 @@
 			position: absolute;
 			top: 0; right: 0; bottom: 0; left: 0;
 		}
-		
+
 		div#container {
 		    display: flex;
 		    top: 0;
@@ -90,11 +90,11 @@
 		input.control--slider{
 			width: 85%;
 		}
-		
+
 		div.menu{
 			text-align: center;
 		}
-		
+
 		div.menu>a{
 		      color: #CCC;
 		      border: 1px solid #ccc;
@@ -103,106 +103,110 @@
 		      text-decoration: none;
 		      margin: 0 1em;
 		    }
-		
-		input[type=range].slider {
-  -webkit-appearance: none;
-  width: 100%;
-  margin: 13.5px 0;
-}
-input[type=range].slider:focus {
-  outline: none;
-}
-input[type=range].slider::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 5px;
-  cursor: pointer;
-  box-shadow: 0.2px 0.2px 1px rgba(0, 0, 0, 0), 0px 0px 0.2px rgba(13, 13, 13, 0);
-  background: #ff0000;
-  border-radius: 1.7px;
-  border: 0px solid #010101;
-}
-input[type=range].slider::-webkit-slider-thumb {
-  box-shadow: 0px 0px 1.9px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-  border: 1.4px solid #000000;
-  height: 32px;
-  width: 32px;
-  border-radius: 16px;
-  background: #ff0000;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -13.5px;
-}
-input[type=range].slider:focus::-webkit-slider-runnable-track {
-  background: #ff1a1a;
-}
-input[type=range].slider::-moz-range-track {
-  width: 100%;
-  height: 5px;
-  cursor: pointer;
-  box-shadow: 0.2px 0.2px 1px rgba(0, 0, 0, 0), 0px 0px 0.2px rgba(13, 13, 13, 0);
-  background: #ff0000;
-  border-radius: 1.7px;
-  border: 0px solid #010101;
-}
-input[type=range].slider::-moz-range-thumb {
-  box-shadow: 0px 0px 1.9px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-  border: 1.4px solid #000000;
-  height: 32px;
-  width: 32px;
-  border-radius: 16px;
-  background: #ff0000;
-  cursor: pointer;
-}
-input[type=range].slider::-ms-track {
-  width: 100%;
-  height: 5px;
-  cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range].slider::-ms-fill-lower {
-  background: #e60000;
-  border: 0px solid #010101;
-  border-radius: 3.4px;
-  box-shadow: 0.2px 0.2px 1px rgba(0, 0, 0, 0), 0px 0px 0.2px rgba(13, 13, 13, 0);
-}
-input[type=range].slider::-ms-fill-upper {
-  background: #ff0000;
-  border: 0px solid #010101;
-  border-radius: 3.4px;
-  box-shadow: 0.2px 0.2px 1px rgba(0, 0, 0, 0), 0px 0px 0.2px rgba(13, 13, 13, 0);
-}
-input[type=range].slider::-ms-thumb {
-  box-shadow: 0px 0px 1.9px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-  border: 1.4px solid #000000;
-  height: 32px;
-  width: 32px;
-  border-radius: 16px;
-  background: #ff0000;
-  cursor: pointer;
-  height: 5px;
-}
-input[type=range].slider:focus::-ms-fill-lower {
-  background: #ff0000;
-}
-input[type=range].slider:focus::-ms-fill-upper {
-  background: #ff1a1a;
-}
 
+		/* Hide range sliders */
+
+		input[type=range] {
+		  -webkit-appearance: none;
+		  margin: 18px 0;
+		  width: 100%;
+		}
+		input[type=range]:focus {
+		  outline: none;
+		}
+		input[type=range]::-webkit-slider-runnable-track {
+		  width: 100%;
+		  height: 8.4px;
+		  cursor: pointer;
+		  animate: 0.2s;
+		  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		  background: #3071a9;
+		  border-radius: 1.3px;
+		  border: 0.2px solid #010101;
+		}
+		input[type=range]::-webkit-slider-thumb {
+		  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		  border: 1px solid #000000;
+		  height: 36px;
+		  width: 16px;
+		  border-radius: 3px;
+		  background: #ffffff;
+		  cursor: pointer;
+		  -webkit-appearance: none;
+		  margin-top: -14px;
+		}
+		input[type=range]:focus::-webkit-slider-runnable-track {
+		  background: #367ebd;
+		}
+		input[type=range]::-moz-range-track {
+		  width: 100%;
+		  height: 8.4px;
+		  cursor: pointer;
+		  animate: 0.2s;
+		  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		  background: #3071a9;
+		  border-radius: 1.3px;
+		  border: 0.2px solid #010101;
+		}
+		input[type=range]::-moz-range-thumb {
+		  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		  border: 1px solid #000000;
+		  height: 36px;
+		  width: 16px;
+		  border-radius: 3px;
+		  background: #ffffff;
+		  cursor: pointer;
+		}
+		input[type=range]::-ms-track {
+		  width: 100%;
+		  height: 8.4px;
+		  cursor: pointer;
+		  animate: 0.2s;
+		  background: transparent;
+		  border-color: transparent;
+		  border-width: 16px 0;
+		  color: transparent;
+		}
+		input[type=range]::-ms-fill-lower {
+		  background: #2a6495;
+		  border: 0.2px solid #010101;
+		  border-radius: 2.6px;
+		  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		}
+		input[type=range]::-ms-fill-upper {
+		  background: #3071a9;
+		  border: 0.2px solid #010101;
+		  border-radius: 2.6px;
+		  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		}
+		input[type=range]::-ms-thumb {
+		  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		  border: 1px solid #000000;
+		  height: 36px;
+		  width: 16px;
+		  border-radius: 3px;
+		  background: #ffffff;
+		  cursor: pointer;
+		}
+		input[type=range]:focus::-ms-fill-lower {
+		  background: #3071a9;
+		}
+		input[type=range]:focus::-ms-fill-upper {
+		  background: #367ebd;
+		}
 
 
 	</style>
 </head>
-		
+
 <body>
 
 	<div id="container">
-		
+
 		<div id="workarea">
-			
+
 			<div id="mixcontainer">
-				
+
 				<div id="bars">
 					<div class="bar bar--red"></div>
 					<div class="bar bar--green"></div>
@@ -217,11 +221,11 @@ input[type=range].slider:focus::-ms-fill-upper {
 					<div class="bar bar--green"></div>
 					<div class="bar bar--blue"></div>
 				</div>
-			
+
 			</div>
-			
+
 		</div>
-		
+
 		<div id="controls">
 
 			<div class="control control--red">
@@ -235,16 +239,16 @@ input[type=range].slider:focus::-ms-fill-upper {
 			<div class="control control--blue">
 				B <input class="control--slider" type="range" name="slider--blue" id="slider--blue" value="255" min="0" max="255">
 			</div>
-			
+
 			<div class="control menu">
 				<a href="#" id="btn__new">Nuevo</a>
 				<a href="#" id="btn__compare">Comparar</a>
 			</div>
-			
+
 		</div>
-		
+
 	</div>
-	
+
 	<script src="js/jquery.js"></script>
 
 	<script src="js/rgbjs.js"></script>
@@ -307,6 +311,6 @@ input[type=range].slider:focus::-ms-fill-upper {
 
     })
 	</script>
-	
+
 </body>
 </html>
