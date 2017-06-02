@@ -1,0 +1,16 @@
+/* Status */
+.status--playing div#colorResult{
+  display: none;
+}
+
+.status--playing div#colorPicker{
+  display: block;
+}
+
+.status--result div#colorResult{
+  display: block;
+}
+
+.status--result div#colorPicker{
+  display: none;
+}
