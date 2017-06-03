@@ -89,48 +89,98 @@ input[type=range]:focus::-ms-fill-upper {
 
 /* red track */
 .control--red input[type=range]::-webkit-slider-runnable-track {
-    background: -webkit-linear-gradient(left, #300 0%, #F00 100%);
-    background: -o-linear-gradient(left, #300 0%, #F00 100%);
-    background: linear-gradient(to right, #300 0%, #F00 100%);
+    background: linear-gradient(to right, #111 0%, $col-red 100%);
 }
 .control--red input[type=range]::-moz-range-track {
-  background: #F00;
+  background: $col-red;
 }
 .control--red input[type=range]::-ms-fill-upper {
-  background: #F00;
+  background: $col-red;
 }
 .control--red input[type=range]:focus::-ms-fill-lower {
-  background: #F00;
+  background: $col-red;
 }
 
 /* green track */
 .control--green input[type=range]::-webkit-slider-runnable-track {
-  background: -webkit-linear-gradient(left, #030 0%, #0F0 100%);
-  background: -o-linear-gradient(left, #030 0%, #0F0 100%);
-  background: linear-gradient(to right, #030 0%, #0F0 100%);
+    background: linear-gradient(to right, #111 0%, $col-green 100%);
 }
 .control--green input[type=range]::-moz-range-track {
-  background: #0F0;
+  background: $col-green;
 }
 .control--green input[type=range]::-ms-fill-upper {
-  background: #0F0;
+  background: $col-green;
 }
 .control--green input[type=range]:focus::-ms-fill-lower {
-  background: #0F0;
+  background: $col-green;
 }
 
 /* blue track */
 .control--blue input[type=range]::-webkit-slider-runnable-track {
-  background: -webkit-linear-gradient(left, #003 0%, #00F 100%);
-  background: -o-linear-gradient(left, #003 0%, #00F 100%);
-  background: linear-gradient(to right, #003 0%, #00F 100%);
+    background: linear-gradient(to right, #111 0%, $col-blue 100%);
 }
 .control--blue input[type=range]::-moz-range-track {
-  background: #00F;
+  background: $col-blue;
 }
 .control--blue input[type=range]::-ms-fill-upper {
-  background: #00F;
+  background: $col-blue;
 }
 .control--blue input[type=range]:focus::-ms-fill-lower {
-  background: #00F;
+  background: $col-blue;
+}
+
+/* cyan track */
+.control--cyan input[type=range]::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #111 0%, $col-cyan 100%);
+}
+.control--cyan input[type=range]::-moz-range-track {
+  background: $col-cyan;
+}
+.control--cyan input[type=range]::-ms-fill-upper {
+  background: $col-cyan;
+}
+.control--cyan input[type=range]:focus::-ms-fill-lower {
+  background: $col-cyan;
+}
+
+/* magenta track */
+.control--magenta input[type=range]::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #111 0%, $col-magenta 100%);
+}
+.control--magenta input[type=range]::-moz-range-track {
+  background: $col-magenta;
+}
+.control--magenta input[type=range]::-ms-fill-upper {
+  background: $col-magenta;
+}
+.control--magenta input[type=range]:focus::-ms-fill-lower {
+  background: $col-magenta;
+}
+
+/* yellow track */
+.control--yellow input[type=range]::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #111 0%, $col-yellow 100%);
+}
+.control--yellow input[type=range]::-moz-range-track {
+  background: $col-yellow;
+}
+.control--yellow input[type=range]::-ms-fill-upper {
+  background: $col-yellow;
+}
+.control--yellow input[type=range]:focus::-ms-fill-lower {
+  background: $col-yellow;
+}
+
+/* black track */
+.control--black input[type=range]::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #111 0%, $col-black 100%);
+}
+.control--black input[type=range]::-moz-range-track {
+  background: $col-black;
+}
+.control--black input[type=range]::-ms-fill-upper {
+  background: $col-black;
+}
+.control--black input[type=range]:focus::-ms-fill-lower {
+  background: $col-black;
 }

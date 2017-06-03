@@ -17,44 +17,58 @@ div#content{
 }
 
 div#container {
-    display: flex;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    flex-direction: column;
-    position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  position: absolute;
 }
 
 div#workarea {
-    flex-grow: 2;
-    background: blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex-grow: 2;
+  background: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 div#mixcontainer {
-    width: 13em;
-    height: 13em;
-    display: flex;
-    background: black;
-    justify-content: center;
-    align-items: center;
+  width: 13em;
+  height: 13em;
+  display: flex;
+  background: black;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid__container{
+  $size: 187px;
+
+  background-color: white;
+  width: $size;
+  height: $size;
+
+  & canvas{
+    width: $size;
+    height: $size;
+  }
+
 }
 
 div#mixer {
-    display: flex;
-    flex-direction: column;
-    width: 140px;
-    height: 140px;
+  display: flex;
+  flex-direction: column;
+  width: 140px;
+  height: 140px;
 }
 
 div#bars{
   display: flex;
-    flex-direction: row;
-    width: 90%;
-    height: 90%;
+  flex-direction: row;
+  width: 90%;
+  height: 90%;
 }
 
 div#bars div.bar{
@@ -98,13 +112,13 @@ div.menu{
 }
 
 div#controls a{
-      color: #CCC;
-      border: 1px solid #ccc;
-      border-radius: 0.25em;
-      padding: 0.5em 0.75em;
-      text-decoration: none;
-      margin: 0 1em;
-    }
+  color: #CCC;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  margin: 0 1em;
+}
 
 
 

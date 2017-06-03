@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RGB</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="HandheldFriendly" content="true" />
+	<link rel="stylesheet" href="../css/clmatcher.css">
+	<style>
+	</style>
+</head>
+
+<body class="status--playing">
+
+	<div id="container">
+
+		<div id="workarea">
+
+			<div id="mixcontainer">
+
+	      <div class="grid__container">
+	        <canvas id="grid--halftones" class="grid__canvas"></canvas>
+	      </div>
+
+			</div>
+
+		</div>
+
+		<%- include('../_partials/_controlcmyk'); %>
+		<%- include('../_partials/_result'); %>
+
+		</div>
+
+	</div>
+
+  <script src="../js/jquery.js"></script>
+  <!--<script src="../js/rgbjs.js"></script>-->
+  <!--<script src="../js/rgbgame.js"></script>-->
+  <!-- Import paper.js -->
+  <script src="../js/vendor/paper-full.min.js"></script>
+  <!-- Begin to draw the grid -->
+  <script src="../js/cmyk.js"></script>
+  <!--<script src="../js/gridder.js"></script>-->
+  <!--<script src="../js/gridsetup.js"></script>-->
+
+
+</body>
+</html>
