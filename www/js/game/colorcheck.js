@@ -22,6 +22,9 @@ function multiplyRGBColors(cyan, magenta, yellow, black){
   return {"red" : red, "green" : green, "blue" : blue};
 }
 
+
+// Delta e for pair
+// Takes 2 parameters: colors in lab format
 function getDeltaEforPair(labA, labB){
   var deltaL = labA[0] - labB[0];
   var deltaA = labA[1] - labB[1];
@@ -40,6 +43,7 @@ function getDeltaEforPair(labA, labB){
   return i < 0 ? 0 : Math.sqrt(i);
 }
 
+// Get a LAB array from RGB values
 function getLABfromRGB(red, green, blue){
   var r = red / 255,
       g = green / 255,
@@ -61,10 +65,12 @@ function getLABfromRGB(red, green, blue){
   return [(116 * y) - 16, 500 * (x - y), 200 * (y - z)]
 }
 
+// Get a LAB array from RGB array
 function getLABfromRGBobject(rgb) {
   return getLABfromRGB(rgb.red, rgb.green, rgb.blue);
 }
 
+// Get detaE from 2 color object
 function getDeltaEforRGBPair(firstColor, secondColor){
   var firstLAB = getLABfromRGBobject(firstColor),
       secondLAB = getLABfromRGBobject(secondColor);
