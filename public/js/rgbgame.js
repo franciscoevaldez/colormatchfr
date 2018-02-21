@@ -1,53 +1,53 @@
 var targetRGB, userRGB,
-targetLAB, userLAB,
-deltaE;
+    targetLAB, userLAB,
+    deltaE;
 
 var ui = {
-body : document.body,
-workarea : document.getElementById('workarea'),
-sliders : {
-r : document.getElementById("slider--red"),
-g : document.getElementById("slider--green"),
-b : document.getElementById("slider--blue")
-},
-button : {
-new : document.getElementById('btn__new'),
-compare : document.getElementById('btn__compare'),
-retry : document.getElementById('btn__retry'),
-restart : document.getElementById('btn__restart')
-},
-bars : document.getElementById('bars')
+    body        : document.body,
+    workarea    : document.getElementById('workarea'),
+    sliders     : {
+        r : document.getElementById("slider--red"),
+        g : document.getElementById("slider--green"),
+        b : document.getElementById("slider--blue")
+    },
+    button      : {
+        new     : document.getElementById('btn__new'),
+        compare : document.getElementById('btn__compare'),
+        retry   : document.getElementById('btn__retry'),
+        restart : document.getElementById('btn__restart')
+    },
+    bars        : document.getElementById('bars')
 };
 
 var status = "playing",
-visualization = 'stars';
+    visualization = 'stars';
 
 function getNewTargetColor(){
-targetRGB = getRandomColor()
-targetLAB = getLABfromRGBobject(targetRGB);
-ui.workarea.style.backgroundColor = 'rgb(' + targetRGB.red + ',' + targetRGB.green + ',' + targetRGB.blue + ')';
+    targetRGB = getRandomColor()
+    targetLAB = getLABfromRGBobject(targetRGB);
+    ui.workarea.style.backgroundColor = 'rgb(' + targetRGB.red + ',' + targetRGB.green + ',' + targetRGB.blue + ')';
 }
 
 function changeToState(newState){
 
-ui.body.classList.remove('status--playing')
-ui.body.classList.remove('status--result')
+    ui.body.classList.remove('status--playing')
+    ui.body.classList.remove('status--result')
 
-if(newState == "playing"){
-ui.body.classList.add('status--playing')
-$('.bar').css('visibility','visible');
-ui.bars.style.background = 'black';
-}
+    if(newState == "playing"){
+        ui.body.classList.add('status--playing')
+        $('.bar').css('visibility','visible');
+        ui.bars.style.background = 'black';
+    }
 
-if(newState == "result"){
-ui.body.classList.add('status--result');
-setupResultFor(deltaE);
-}
+    if(newState == "result"){
+        ui.body.classList.add('status--result');
+        setupResultFor(deltaE);
+    }
 
 }
 
 function changeToPlaying(){
-changeToState('playing');
+    changeToState('playing');
 }
 
 function gradeDelta(newDelta){
