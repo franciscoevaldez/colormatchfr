@@ -1,6 +1,7 @@
 // UI -----------------------
+// - UI elements
 
-// declaration
+// declarations
 var ui = {
     body        : document.body,
     workarea    : document.getElementById('workarea'),
@@ -10,14 +11,23 @@ var ui = {
         compare : document.getElementById('btn__compare'),
         retry   : document.getElementById('btn__retry'),
         restart : document.getElementById('btn__restart')
+    },
+    editArea    : {
+        hide    : function(){},
+        show    : function(){},
+        showResult : function(){}
+    },
+    result      : {
+        container:  document.getElementById('resultP'),
+        text:       document.getElementById('resultText')
     }
 }
 
 // setup result view
 function setupResultFor(newDelta){
 
-    var resultContainer = document.getElementById('resultP');
-    var resultText = document.getElementById('resultText');
+    //var resultContainer = document.getElementById('resultP');
+    //var resultText = document.getElementById('resultText');
     var messages = gradeDelta(newDelta);
     
     ui.body.classList.remove('rating--0');
@@ -33,8 +43,8 @@ function setupResultFor(newDelta){
     
     ui.body.classList.add(messages[0]);
     
-    resultText.innerHTML = messages[1];
-    resultContainer.innerHTML = newDelta;
+    ui.result.text.innerHTML = messages[1];
+    ui.result.container.innerHTML = newDelta;
     
     }
 
@@ -55,3 +65,8 @@ function toggleResultType(){
 $(".result").dblclick(function(){
     toggleResultType()
 });
+
+
+ui.button.new.addEventListener("click", game.restart);
+ui.button.retry.addEventListener("click", game.status.updateToPlaying);
+ui.button.restart.addEventListener('click', game.restart);

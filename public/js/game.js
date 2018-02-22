@@ -3,26 +3,11 @@
 - Game management
 - Status management
 - Color management
-- UI elements
 - Grading
 */
 
-// Game Creation
-
-
-// Color management -----------------------
-var targetColor, targetLAB,
-    playerColor, playerLAB,
-    deltaE;
-
-
-// Status Management -----------------------
-var status          = 'playing',
-    visualization   = 'stars';
-
-
 // status changing and updates to the ui
-function changeToState(newState, callback){
+function changeToState(newState){
     
     // remove previous status
     ui.body.classList.remove('status--playing');
@@ -32,28 +17,59 @@ function changeToState(newState, callback){
     var newStateClass;
     if (newState == 'playing'){
         newStateClass = 'status--playing';
+        ui.editArea.show();
     } else if (newState == 'result'){
         newStateClass = 'status--result';
+        ui.editArea.hide();
     }
     ui.body.classList.add(newStateClass);
-    
-    // callback
-    if(typeof callback === "function"){
-        callback();
-    }
+
+    game.status.current = newState;
     
 }
 
 // change state to playing (shortcut)
 function changeStateToPlaying(){
-    changeToState('playing', null);
+    changeToState('playing');
 }
 
 // restart game
 function doRestart(){
-    getNewTargetColor();
-    changeStateToPlaying();
+    game.color.target.new();
+    game.status.updateToPlaying();
 }
+
+// Game Management
+var game = {
+    color  : {
+        target      : {
+            current : {},
+            lab     : {},
+            new     : function (){}
+        },
+        player      : {
+            current : {},
+            lab     : {}
+        },
+        delta       : 0
+    },
+    status : {
+        current     : 'playing',
+        updateTo    : changeToState,
+        updateToPlaying : changeStateToPlaying,
+        updateToResult : function(){}
+    },
+    visualization : 'number',
+    restart : doRestart
+}
+
+// Color management -----------------------
+var targetColor, targetLAB,
+    playerColor, playerLAB,
+    deltaE;
+
+
+
 
 
 // Grading -----------------------
