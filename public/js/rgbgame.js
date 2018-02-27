@@ -41,18 +41,6 @@ ui.editArea.showResult = function(RGBcolor){
     ui.bars.style.background = 'rgb(' + RGBcolor.red + ',' + RGBcolor.green + ',' + RGBcolor.blue +')';
 }
 
-// getting a new color and displaying it
-// function getNewTargetColor(){
-//     targetColor = getRandomColor()
-//     targetLAB = getLABfromRGBobject(targetColor);
-//     ui.workarea.style.backgroundColor = 'rgb(' + targetColor.red + ',' + targetColor.green + ',' + targetColor.blue + ')';
-// }
-
-// show formed color
-// function showResultingColor(color){
-//     ui.bars.style.background = 'rgb(' + color.red + ',' + color.green + ',' + color.blue +')';
-// }
-
 // Compare the player and target color
 // ** Should be refactored to compare any two colors
 function compare(){
@@ -72,20 +60,33 @@ function compare(){
 }
 
 // RGB Sliders
+/*
 $("#slider--red").change(function() {
-    var newValue = this.value;
-    $('.bar--red').css('opacity', newValue/255);
+    $('.bar--red').css('opacity', this.value/255);
 });
 $("#slider--green").change(function() {
-    var newValue = this.value;
-    $('.bar--green').css('opacity', newValue/255);
+    $('.bar--green').css('opacity', this.value/255);
 });
 $("#slider--blue").change(function() {
-    var newValue = this.value;
-    $('.bar--blue').css('opacity', newValue/255);
+    $('.bar--blue').css('opacity', this.value/255);
 });
+*/
+
+ui.sliders.r.addEventListener("input", function(){
+    $('.bar--red').css('opacity', this.value/255);
+})
+
+ui.sliders.g.addEventListener("input", function(){
+    $('.bar--green').css('opacity', this.value/255);
+})
+
+ui.sliders.b.addEventListener("input", function(){
+    $('.bar--blue').css('opacity', this.value/255);
+})
+
+
+
 
 ui.button.compare.addEventListener("click", compare);
 
-//getNewTargetColor()
 game.color.target.new();

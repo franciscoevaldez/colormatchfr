@@ -36,7 +36,7 @@ function changeStateToPlaying(){
 // restart game
 function doRestart(){
     game.color.target.new();
-    game.status.updateToPlaying();
+    game.status.setToPlaying();
 }
 
 // Game Management
@@ -54,23 +54,14 @@ var game = {
         delta       : 0
     },
     status : {
-        current     : 'playing',
-        updateTo    : changeToState,
-        updateToPlaying : changeStateToPlaying,
-        updateToResult : function(){}
+        current      : 'playing',
+        updateTo     : changeToState,
+        setToPlaying : changeStateToPlaying,
+        setToResult  : function(){}
     },
     visualization : 'number',
     restart : doRestart
 }
-
-// Color management -----------------------
-var targetColor, targetLAB,
-    playerColor, playerLAB,
-    deltaE;
-
-
-
-
 
 // Grading -----------------------
 function gradeDelta(newDelta){

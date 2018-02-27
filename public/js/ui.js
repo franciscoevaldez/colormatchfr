@@ -26,8 +26,6 @@ var ui = {
 // setup result view
 function setupResultFor(newDelta){
 
-    //var resultContainer = document.getElementById('resultP');
-    //var resultText = document.getElementById('resultText');
     var messages = gradeDelta(newDelta);
     
     ui.body.classList.remove('rating--0');
@@ -68,5 +66,5 @@ $(".result").dblclick(function(){
 
 
 ui.button.new.addEventListener("click", game.restart);
-ui.button.retry.addEventListener("click", game.status.updateToPlaying);
+ui.button.retry.addEventListener("click", game.status.setToPlaying);
 ui.button.restart.addEventListener('click', game.restart);
