@@ -1,176 +1,92 @@
-var targetRGB, userRGB,
-    targetLAB, userLAB,
-    deltaE;
+// Exclusive setup for RGB
 
-var ui = {
-    body        : document.body,
-    workarea    : document.getElementById('workarea'),
-    sliders     : {
-        r : document.getElementById("slider--red"),
-        g : document.getElementById("slider--green"),
-        b : document.getElementById("slider--blue")
-    },
-    button      : {
-        new     : document.getElementById('btn__new'),
-        compare : document.getElementById('btn__compare'),
-        retry   : document.getElementById('btn__retry'),
-        restart : document.getElementById('btn__restart')
-    },
-    bars        : document.getElementById('bars')
+// ui sliders and process color
+ui.sliders = {
+    r : document.getElementById("slider--red"),
+    g : document.getElementById("slider--green"),
+    b : document.getElementById("slider--blue")
 };
 
-var status = "playing",
-    visualization = 'stars';
+ui.bars = document.getElementById('bars');
 
-function getNewTargetColor(){
-    targetRGB = getRandomColor()
-    targetLAB = getLABfromRGBobject(targetRGB);
-    ui.workarea.style.backgroundColor = 'rgb(' + targetRGB.red + ',' + targetRGB.green + ',' + targetRGB.blue + ')';
+ui.editArea.hide = function() {
+    $('.bar').css('visibility','hidden');
 }
 
-function changeToState(newState){
-
-    ui.body.classList.remove('status--playing')
-    ui.body.classList.remove('status--result')
-
-    if(newState == "playing"){
-        ui.body.classList.add('status--playing')
-        $('.bar').css('visibility','visible');
-        ui.bars.style.background = 'black';
-    }
-
-    if(newState == "result"){
-        ui.body.classList.add('status--result');
-        setupResultFor(deltaE);
-    }
-
+ui.editArea.show = function() {
+    $('.bar').css('visibility','visible');
+    ui.bars.style.background = 'black';
 }
 
-function changeToPlaying(){
-    changeToState('playing');
+// function for getting a new color
+game.color.target.new = function(){
+    var newRed = Math.round(Math.random() * 255),
+        newGreen = Math.round(Math.random() * 255),
+        newBlue = Math.round(Math.random() * 255);
+
+    var newRandomRGB = {
+        red : newRed,
+        green : newGreen,
+        blue : newBlue
+    };
+
+    game.color.target.current = newRandomRGB;
+    game.color.target.lab = getLABfromRGBobject(newRandomRGB);
+    ui.workarea.style.background = 'rgb(' + newRandomRGB.red + ',' + newRandomRGB.green + ',' + newRandomRGB.blue + ')';
+
+    return newRandomRGB;
 }
 
-function gradeDelta(newDelta){
-
-var newClass, newMessage;
-
-if (newDelta < 1) {
-newClass="rating--9";
-newMessage="Excelente";
-} else if (newDelta < 2.2) {
-newClass="rating--8";
-newMessage="Excelente";
-} else if (newDelta < 5) {
-newClass="rating--7";
-newMessage="Muy bueno";
-} else if (newDelta < 8) {
-newClass="rating--6";
-newMessage="Muy bueno";
-} else if (newDelta < 12) {
-newClass="rating--5";
-newMessage="Aceptable";
-} else if (newDelta < 18) {
-newClass="rating--4";
-newMessage="Aceptable";
-} else if (newDelta < 25) {
-newClass="rating--3";
-newMessage="Pobre";
-} else if (newDelta < 35) {
-newClass="rating--2";
-newMessage="Pobre";
-} else if (newDelta < 50) {
-newClass="rating--1";
-newMessage="Malo";
-} else {
-newClass="rating--0";
-newMessage="Malo";
+ui.editArea.showResult = function(RGBcolor){
+    ui.bars.style.background = 'rgb(' + RGBcolor.red + ',' + RGBcolor.green + ',' + RGBcolor.blue +')';
 }
 
-return [newClass, newMessage];
-
-}
-
-function setupResultFor(newDelta){
-
-var resultContainer = document.getElementById('resultP');
-var resultText = document.getElementById('resultText');
-var messages = gradeDelta(newDelta);
-
-ui.body.classList.remove('rating--0');
-ui.body.classList.remove('rating--1');
-ui.body.classList.remove('rating--2');
-ui.body.classList.remove('rating--3');
-ui.body.classList.remove('rating--4');
-ui.body.classList.remove('rating--5');
-ui.body.classList.remove('rating--6');
-ui.body.classList.remove('rating--7');
-ui.body.classList.remove('rating--8');
-ui.body.classList.remove('rating--9');
-
-ui.body.classList.add(messages[0]);
-
-resultText.innerHTML = messages[1];
-resultContainer.innerHTML = newDelta;
-
-}
-
-function toggleResultType(){
-if (visualization == 'stars') {
-ui.body.classList.remove('result--stars');
-ui.body.classList.add('result--number');
-visualization = 'number';
-} else {
-ui.body.classList.remove('result--number');
-ui.body.classList.add('result--stars');
-visualization = 'stars'
-}
-}
-
-function showColor(){
-var nuColor = 'rgb(' + ui.sliders.r.value + ',' + ui.sliders.g.value + ',' + ui.sliders.b.value +')';
-ui.bars.style.background = nuColor;
-$('.bar').css('visibility','hidden');
-}
-
+// Compare the player and target color
+// ** Should be refactored to compare any two colors
 function compare(){
-userRGB = {
-red : ui.sliders.r.value,
-green : ui.sliders.g.value,
-blue : ui.sliders.b.value
-};
+    game.color.player = {
+        red : ui.sliders.r.value,
+        green : ui.sliders.g.value,
+        blue : ui.sliders.b.value
+    };
+    
+    playerLAB = getLABfromRGBobject(game.color.player);
+    deltaE = getDeltaEforPair(game.color.target.lab, playerLAB);
+    deltaE = Math.round(deltaE*100)/100;
 
-userLAB = getLABfromRGBobject(userRGB);
-deltaE = getDeltaEforPair(targetLAB, userLAB);
-deltaE = Math.round(deltaE*1000)/1000;
-changeToState("result");
-showColor();
+    changeToState("result");
+    setupResultFor(deltaE);
+    ui.editArea.showResult(game.color.player)
 }
 
-function doRestart(){
-getNewTargetColor()
-changeToPlaying();
-}
-
+// RGB Sliders
+/*
 $("#slider--red").change(function() {
-var newValue = this.value;
-$('.bar--red').css('opacity', newValue/255);
+    $('.bar--red').css('opacity', this.value/255);
 });
 $("#slider--green").change(function() {
-var newValue = this.value;
-$('.bar--green').css('opacity', newValue/255);
+    $('.bar--green').css('opacity', this.value/255);
 });
 $("#slider--blue").change(function() {
-var newValue = this.value;
-$('.bar--blue').css('opacity', newValue/255);
+    $('.bar--blue').css('opacity', this.value/255);
 });
+*/
 
-ui.button.new.addEventListener("click",getNewTargetColor);
-ui.button.compare.addEventListener("click",compare);
-ui.button.retry.addEventListener("click",changeToPlaying);
-ui.button.restart.addEventListener('click',doRestart);
+ui.sliders.r.addEventListener("input", function(){
+    $('.bar--red').css('opacity', this.value/255);
+})
 
-$(".result").dblclick(function(){
-toggleResultType()
-});
+ui.sliders.g.addEventListener("input", function(){
+    $('.bar--green').css('opacity', this.value/255);
+})
 
-getNewTargetColor()
+ui.sliders.b.addEventListener("input", function(){
+    $('.bar--blue').css('opacity', this.value/255);
+})
+
+
+
+
+ui.button.compare.addEventListener("click", compare);
+
+game.color.target.new();
