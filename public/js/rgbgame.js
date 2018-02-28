@@ -11,14 +11,11 @@ ui.bars = document.getElementById('bars');
 ui.barContainer = document.getElementById('barContainer');
 
 ui.editArea.hide = function() {
-    ui.bars.style.visibility = 'hidden';
-    //$('.bars').css('visibility','hidden');
+    ui.bars.style.opacity = 0;
 }
 
 ui.editArea.show = function() {
-    ui.bars.style.visibility = 'visible';
-    //$('.bars').css('visibility','visible');
-    //ui.bars.style.background = 'black';
+    ui.bars.style.opacity = 1;
 }
 
 // function for getting a new color

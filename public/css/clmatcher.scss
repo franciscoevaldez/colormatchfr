@@ -83,6 +83,8 @@ div#bars{
   flex-direction: row;
   width: 100%;
   height: 100%;
+  opacity: 1;
+  transition: all 0.25s linear;
 }
 
 div#bars div.bar{
