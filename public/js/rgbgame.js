@@ -12,10 +12,12 @@ ui.barContainer = document.getElementById('barContainer');
 
 ui.editArea.hide = function() {
     ui.bars.style.opacity = 0;
+    ui.bars.style.filter = 'blur(3px)';
 }
 
 ui.editArea.show = function() {
     ui.bars.style.opacity = 1;
+    ui.bars.style.filter = 'none';
 }
 
 // function for getting a new color
