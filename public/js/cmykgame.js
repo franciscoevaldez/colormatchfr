@@ -2,7 +2,7 @@ var targetRGB, userRGB,
     targetLAB, userLAB,
     deltaE;
 
-var workarea = document.getElementById('workarea'),
+var colorArea = document.getElementById('colorArea'),
     body = document.body;
 
 var status = "playing";
@@ -16,8 +16,8 @@ function getNewTargetColor(){
   targetCMYK = color.setRandomCMYK()
   targetRGB = color.getRGBforCYMKobject(targetCMYK)
   targetLAB = color.getLABfromRGBobject(targetRGB);
-  //$("#workarea").css('background-color', 'rgb(' + targetRGB.r + ',' + targetRGB.g + ',' + targetRGB.b + ')')
-  workarea.style.backgroundColor = 'rgb(' + targetRGB.r + ',' + targetRGB.g + ',' + targetRGB.b + ')'
+  //$("#colorArea").css('background-color', 'rgb(' + targetRGB.r + ',' + targetRGB.g + ',' + targetRGB.b + ')')
+  colorArea.style.backgroundColor = 'rgb(' + targetRGB.r + ',' + targetRGB.g + ',' + targetRGB.b + ')'
 }
 
 function changeToState(newState){

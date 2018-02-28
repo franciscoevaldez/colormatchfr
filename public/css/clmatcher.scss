@@ -35,7 +35,7 @@ div#container {
   position: absolute;
 }
 
-div#workarea {
+div#colorArea {
   flex-grow: 2;
   background: blue;
   display: flex;
@@ -73,11 +73,16 @@ div#mixer {
   height: 140px;
 }
 
+div#barContainer{
+  width: 90%;
+  height: 90%;
+}
+
 div#bars{
   display: flex;
   flex-direction: row;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
 
 div#bars div.bar{

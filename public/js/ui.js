@@ -4,7 +4,7 @@
 // declarations
 var ui = {
     body        : document.body,
-    workarea    : document.getElementById('workarea'),
+    colorArea    : document.getElementById('colorArea'),
     sliders     : {},
     button      : {
         new     : document.getElementById('btn__new'),

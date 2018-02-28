@@ -8,14 +8,17 @@ ui.sliders = {
 };
 
 ui.bars = document.getElementById('bars');
+ui.barContainer = document.getElementById('barContainer');
 
 ui.editArea.hide = function() {
-    $('.bar').css('visibility','hidden');
+    ui.bars.style.visibility = 'hidden';
+    //$('.bars').css('visibility','hidden');
 }
 
 ui.editArea.show = function() {
-    $('.bar').css('visibility','visible');
-    ui.bars.style.background = 'black';
+    ui.bars.style.visibility = 'visible';
+    //$('.bars').css('visibility','visible');
+    //ui.bars.style.background = 'black';
 }
 
 // function for getting a new color
@@ -32,13 +35,13 @@ game.color.target.new = function(){
 
     game.color.target.current = newRandomRGB;
     game.color.target.lab = getLABfromRGBobject(newRandomRGB);
-    ui.workarea.style.background = 'rgb(' + newRandomRGB.red + ',' + newRandomRGB.green + ',' + newRandomRGB.blue + ')';
+    ui.colorArea.style.background = 'rgb(' + newRandomRGB.red + ',' + newRandomRGB.green + ',' + newRandomRGB.blue + ')';
 
     return newRandomRGB;
 }
 
 ui.editArea.showResult = function(RGBcolor){
-    ui.bars.style.background = 'rgb(' + RGBcolor.red + ',' + RGBcolor.green + ',' + RGBcolor.blue +')';
+    ui.barContainer.style.background = 'rgb(' + RGBcolor.red + ',' + RGBcolor.green + ',' + RGBcolor.blue +')';
 }
 
 // Compare the player and target color
@@ -59,18 +62,6 @@ function compare(){
     ui.editArea.showResult(game.color.player)
 }
 
-// RGB Sliders
-/*
-$("#slider--red").change(function() {
-    $('.bar--red').css('opacity', this.value/255);
-});
-$("#slider--green").change(function() {
-    $('.bar--green').css('opacity', this.value/255);
-});
-$("#slider--blue").change(function() {
-    $('.bar--blue').css('opacity', this.value/255);
-});
-*/
 
 ui.sliders.r.addEventListener("input", function(){
     $('.bar--red').css('opacity', this.value/255);

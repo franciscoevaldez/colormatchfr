@@ -14,23 +14,27 @@
 
 	<div id="container">
 
-		<div id="workarea">
+		<div id="colorArea">
 
 			<div id="mixcontainer">
 
 				<div id="bars">
-					<div class="bar bar--red"></div>
-					<div class="bar bar--green"></div>
-					<div class="bar bar--blue"></div>
-					<div class="bar bar--red"></div>
-					<div class="bar bar--green"></div>
-					<div class="bar bar--blue"></div>
-					<div class="bar bar--red"></div>
-					<div class="bar bar--green"></div>
-					<div class="bar bar--blue"></div>
-					<div class="bar bar--red"></div>
-					<div class="bar bar--green"></div>
-					<div class="bar bar--blue"></div>
+
+					<div id="barContainer">
+						<div class="bar bar--red"></div>
+						<div class="bar bar--green"></div>
+						<div class="bar bar--blue"></div>
+						<div class="bar bar--red"></div>
+						<div class="bar bar--green"></div>
+						<div class="bar bar--blue"></div>
+						<div class="bar bar--red"></div>
+						<div class="bar bar--green"></div>
+						<div class="bar bar--blue"></div>
+						<div class="bar bar--red"></div>
+						<div class="bar bar--green"></div>
+						<div class="bar bar--blue"></div>
+					</div>
+					
 				</div>
 
 			</div>
@@ -69,7 +73,7 @@
 		function getNewTargetColor(){
 			targetRGB = getRandomColor()
 			targetLAB = getLABfromRGBobject(targetRGB);
-      $("#workarea").css('background-color', 'rgb(' + targetRGB.red + ',' + targetRGB.green + ',' + targetRGB.blue + ')')
+      $("#colorArea").css('background-color', 'rgb(' + targetRGB.red + ',' + targetRGB.green + ',' + targetRGB.blue + ')')
 		}
 
 		function changeToState(newState){
