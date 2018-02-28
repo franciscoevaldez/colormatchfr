@@ -19,6 +19,12 @@ function changeToState(newState){
         newStateClass = 'status--playing';
         ui.editArea.show();
     } else if (newState == 'result'){
+
+        if(game.showOnboarding){
+            ui.onboarding.show(2);
+            game.showOnboarding = false;
+        }
+
         newStateClass = 'status--result';
         ui.editArea.hide();
     }
@@ -59,7 +65,8 @@ var game = {
         setToPlaying : changeStateToPlaying,
         setToResult  : function(){}
     },
-    visualization : 'number',
+    showOnboarding   : true,
+    visualization    : 'number',
     restart : doRestart
 }
 

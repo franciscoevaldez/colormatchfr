@@ -20,6 +20,12 @@ var ui = {
     result      : {
         container:  document.getElementById('resultP'),
         text:       document.getElementById('resultText')
+    },
+    onboarding  : {
+        container   : document.getElementById('onboarding'),
+        steps       : ['ob--step1', 'ob--step2'],
+        hide        : hideOnboarding,
+        show        : showOnboarding
     }
 }
 
@@ -64,7 +70,20 @@ $(".result").dblclick(function(){
     toggleResultType()
 });
 
+// hide onboarding
+function hideOnboarding(){
+    for (let stepI = 0; stepI < ui.onboarding.steps.length; stepI++) {
+        ui.body.classList.remove(ui.onboarding.steps[stepI]);
+    }
+}
+
+function showOnboarding(step){
+    var newStep = (step) ? step-1 : 0;
+    ui.body.classList.add(ui.onboarding.steps[newStep]);
+}
+
 
 ui.button.new.addEventListener("click", game.restart);
 ui.button.retry.addEventListener("click", game.status.setToPlaying);
 ui.button.restart.addEventListener('click', game.restart);
+ui.onboarding.container.addEventListener('click',hideOnboarding);
