@@ -60,7 +60,8 @@ var game = {
         setToResult  : function(){}
     },
     visualization : 'number',
-    restart : doRestart
+    restart : doRestart,
+    retry: doRetry
 }
 
 // Grading -----------------------

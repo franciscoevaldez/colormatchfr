@@ -64,7 +64,6 @@ $(".result").dblclick(function(){
     toggleResultType()
 });
 
-
-ui.button.new.addEventListener("click", game.restart);
-ui.button.retry.addEventListener("click", game.status.setToPlaying);
+ui.button.new.addEventListener("click", game.newColor);
+ui.button.retry.addEventListener("click", game.retry);
 ui.button.restart.addEventListener('click', game.restart);

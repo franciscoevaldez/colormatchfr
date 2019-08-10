@@ -56,13 +56,26 @@ function compare(){
     };
 
 
+    // log & ** analytics ** for tapped button
+    var trackLabel = {
+        "targetColor"   : game.color.target.current, 
+        "testColor"     : game.color.player.current
+    }
+    var trackTag = {
+        "category"  : "game",
+        "action"    : "evaluate",
+        "label"     : trackLabel
+    }
+    console.log(trackTag);
+
     
     // calculate delta
     playerLAB = getLABfromRGBobject(game.color.player.current);
     deltaE = getDeltaEforPair(game.color.target.lab, playerLAB);
     deltaE = Math.round(deltaE*100)/100;
+    game.deltaE = deltaE;
 
-    // log & analytics
+    // log & **analytics**
     var trackLabel = {
         "deltaE"        : deltaE, 
         "tryNumber"     : game.tryCount, 

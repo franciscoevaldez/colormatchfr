@@ -39,10 +39,65 @@ function changeStateToPlaying(){
     changeToState('playing');
 }
 
-// restart game
-function doRestart(){
+// new game from start
+function doNewColor(){
+
+    // log & ** analytics ** for tapped button
+    var trackLabel = {
+        "oldColor"      : game.color.target.current
+    }
+    var trackTag = {
+        "category"  : "game",
+        "action"    : "NewColor/AfterTrying",
+        "label"     : trackLabel
+    }
+    console.log(trackTag);
+
     game.color.target.new();
     game.tryCount = 0;
+    game.status.setToPlaying();
+}
+
+// restart game from results
+function doRestart(){
+
+    // log & ** analytics ** for tapped button
+    var trackLabel = {
+        "deltaE"        : game.deltaE, 
+        "tryNumber"     : game.tryCount, 
+        "oldColor"      : game.color.target.current, 
+        "testColor"     : game.color.player.current
+    }
+    var trackTag = {
+        "category"  : "game",
+        "action"    : "NewColor/FromResult",
+        "label"     : trackLabel
+    }
+    console.log(trackTag);
+
+    game.color.target.new();
+    game.tryCount = 0;
+    game.status.setToPlaying();
+}
+
+// retry color
+// Retry button
+function doRetry(){
+
+    // log & ** analytics ** for tapped button
+    var trackLabel = {
+        "deltaE"        : game.deltaE, 
+        "tryNumber"     : game.tryCount, 
+        "targetColor"   : game.color.target.current, 
+        "testColor"     : game.color.player.current
+    }
+    var trackTag = {
+        "category"  : "game",
+        "action"    : "retry",
+        "label"     : trackLabel
+    }
+    console.log(trackTag);
+
     game.status.setToPlaying();
 }
 
@@ -67,8 +122,10 @@ var game = {
         setToPlaying : changeStateToPlaying,
         setToResult  : function(){}
     },
-    visualization : 'number',
-    restart : doRestart
+    visualization   : 'number',
+    newColor        : doNewColor,
+    restart         : doRestart,
+    retry           : doRetry
 }
 
 // Grading -----------------------
