@@ -49,14 +49,16 @@ function compare(){
     game.tryCount++
 
     // get values
-    game.color.player = {
-        red : ui.sliders.r.value,
-        green : ui.sliders.g.value,
-        blue : ui.sliders.b.value
+    game.color.player.current = {
+        red : parseInt(ui.sliders.r.value),
+        green : parseInt(ui.sliders.g.value),
+        blue : parseInt(ui.sliders.b.value)
     };
+
+
     
     // calculate delta
-    playerLAB = getLABfromRGBobject(game.color.player);
+    playerLAB = getLABfromRGBobject(game.color.player.current);
     deltaE = getDeltaEforPair(game.color.target.lab, playerLAB);
     deltaE = Math.round(deltaE*100)/100;
 
@@ -65,11 +67,11 @@ function compare(){
         "deltaE"        : deltaE, 
         "tryNumber"     : game.tryCount, 
         "targetColor"   : game.color.target.current, 
-        "testColor"     : game.color.player
+        "testColor"     : game.color.player.current
     }
     var trackTag = {
-        "category"  : "result",
-        "action"    : "result/other",
+        "category"  : "results",
+        "action"    : "result",
         "label"     : trackLabel
     }
     console.log(trackTag);
@@ -77,7 +79,7 @@ function compare(){
     // show results
     changeToState("result");
     setupResultFor(deltaE);
-    ui.editArea.showResult(game.color.player)
+    ui.editArea.showResult(game.color.player.current)
 }
 
 ui.sliders.r.addEventListener("input", function(){

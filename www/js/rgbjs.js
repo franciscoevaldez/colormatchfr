@@ -49,7 +49,7 @@ function getLABfromRGBobject(rgb) {
   return getLABfromRGB(rgb.red, rgb.green, rgb.blue);
 }
 
-// Get random comment
+// Get random color
 function getRandomColor(){
   var newRed = Math.round(Math.random() * 255),
       newGreen = Math.round(Math.random() * 255),
