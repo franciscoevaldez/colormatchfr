@@ -37,7 +37,7 @@ game.color.target.new = function(){
 }
 
 ui.editArea.showResult = function(RGBcolor){
-    ui.bars.style.background = 'rgb(' + RGBcolor.red + ',' + RGBcolor.green + ',' + RGBcolor.blue +')';
+    ui.bars.style.background = 'rgb(' + RGBcolor.r + ',' + RGBcolor.g + ',' + RGBcolor.b +')';
 }
 
 // Compare the player and target color
