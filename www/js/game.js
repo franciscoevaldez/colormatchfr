@@ -42,6 +42,7 @@ function changeStateToPlaying(){
 // restart game
 function doRestart(){
     game.color.target.new();
+    game.tryCount = 0;
     game.status.setToPlaying();
 }
 
@@ -59,6 +60,7 @@ var game = {
         },
         delta       : 0
     },
+    tryCount: 0,
     status : {
         current      : 'playing',
         updateTo     : changeToState,

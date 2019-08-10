@@ -45,6 +45,9 @@ ui.editArea.showResult = function(RGBcolor){
 // ** Should be refactored to compare any two colors
 function compare(){
 
+    // increase try count
+    game.tryCount++
+
     // get values
     game.color.player = {
         red : ui.sliders.r.value,
@@ -60,7 +63,7 @@ function compare(){
     // log & analytics
     var trackLabel = {
         "deltaE"        : deltaE, 
-        "tryNumber"     : game.tryNumber, 
+        "tryNumber"     : game.tryCount, 
         "targetColor"   : game.color.target.current, 
         "testColor"     : game.color.player
     }
@@ -69,26 +72,13 @@ function compare(){
         "action"    : "result/other",
         "label"     : trackLabel
     }
-    console.log(trackTag)
+    console.log(trackTag);
 
     // show results
     changeToState("result");
     setupResultFor(deltaE);
     ui.editArea.showResult(game.color.player)
 }
-
-// RGB Sliders
-/*
-$("#slider--red").change(function() {
-    $('.bar--red').css('opacity', this.value/255);
-});
-$("#slider--green").change(function() {
-    $('.bar--green').css('opacity', this.value/255);
-});
-$("#slider--blue").change(function() {
-    $('.bar--blue').css('opacity', this.value/255);
-});
-*/
 
 ui.sliders.r.addEventListener("input", function(){
     $('.bar--red').css('opacity', this.value/255);
