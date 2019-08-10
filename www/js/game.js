@@ -8,6 +8,12 @@
 
 // status changing and updates to the ui
 function changeToState(newState){
+
+    /* Status list
+    readyforplay: game is setup but not interactedwith
+    playing: user is interacting with sliders
+    result: delta visible
+    */
     
     // remove previous status
     ui.body.classList.remove('status--playing');

@@ -44,16 +44,34 @@ ui.editArea.showResult = function(RGBcolor){
 // Compare the player and target color
 // ** Should be refactored to compare any two colors
 function compare(){
+
+    // get values
     game.color.player = {
         red : ui.sliders.r.value,
         green : ui.sliders.g.value,
         blue : ui.sliders.b.value
     };
     
+    // calculate delta
     playerLAB = getLABfromRGBobject(game.color.player);
     deltaE = getDeltaEforPair(game.color.target.lab, playerLAB);
     deltaE = Math.round(deltaE*100)/100;
 
+    // log & analytics
+    var trackLabel = {
+        "deltaE"        : deltaE, 
+        "tryNumber"     : game.tryNumber, 
+        "targetColor"   : game.color.target.current, 
+        "testColor"     : game.color.player
+    }
+    var trackTag = {
+        "category"  : "result",
+        "action"    : "result/other",
+        "label"     : trackLabel
+    }
+    console.log(trackTag)
+
+    // show results
     changeToState("result");
     setupResultFor(deltaE);
     ui.editArea.showResult(game.color.player)
