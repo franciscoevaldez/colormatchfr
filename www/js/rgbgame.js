@@ -96,14 +96,17 @@ function compare(){
 }
 
 ui.sliders.r.addEventListener("input", function(){
+    game.hasInteracted = true;
     $('.bar--red').css('opacity', this.value/255);
 })
 
 ui.sliders.g.addEventListener("input", function(){
+    game.hasInteracted = true;
     $('.bar--green').css('opacity', this.value/255);
 })
 
 ui.sliders.b.addEventListener("input", function(){
+    game.hasInteracted = true;
     $('.bar--blue').css('opacity', this.value/255);
 })
 

@@ -46,14 +46,18 @@ function doNewColor(){
     var trackLabel = {
         "oldColor"      : game.color.target.current
     }
+
+    var trackAction = game.hasInteracted ? "NewColor/AfterTrying" : "NewColor/WithoutTrying";
+
     var trackTag = {
         "category"  : "game",
-        "action"    : "NewColor/AfterTrying",
+        "action"    : trackAction,
         "label"     : trackLabel
     }
     console.log(trackTag);
 
     game.color.target.new();
+    game.hasInteracted = false;
     game.tryCount = 0;
     game.status.setToPlaying();
 }
@@ -76,6 +80,7 @@ function doRestart(){
     console.log(trackTag);
 
     game.color.target.new();
+    game.hasInteracted = false;
     game.tryCount = 0;
     game.status.setToPlaying();
 }
@@ -116,6 +121,7 @@ var game = {
         delta       : 0
     },
     tryCount: 0,
+    hasInteracted: false,
     status : {
         current      : 'playing',
         updateTo     : changeToState,
