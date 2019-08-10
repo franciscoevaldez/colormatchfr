@@ -41,7 +41,14 @@ function getLABfromRGB(red, green, blue){
   y = (y > 0.008856) ? Math.pow(y, 1/3) : (7.787 * y) + 16/116;
   z = (z > 0.008856) ? Math.pow(z, 1/3) : (7.787 * z) + 16/116;
 
-  return [(116 * y) - 16, 500 * (x - y), 200 * (y - z)]
+  //return [(116 * y) - 16, 500 * (x - y), 200 * (y - z)]
+  var nuLAB = {
+    "L" : (116 * y) - 16, 
+    "a" : 500 * (x - y)
+    "b" : 200 * (y - z)
+  }
+
+  return nuLAB;
 }
 
 // Get a LAB array from RGB array

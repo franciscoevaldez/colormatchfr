@@ -139,6 +139,7 @@ function getAnyColor(){
 
     var nuColor = {
         rgb : nuRGB,
+        hsv : nuHSV,
         difficulty : whichRandom
     }
 

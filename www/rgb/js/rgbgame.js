@@ -24,19 +24,16 @@ game.color.target.new = function(){
     //new randomic test
     var newColor = getAnyColor();
 
-
     var newRed = Math.round(Math.random() * 255),
         newGreen = Math.round(Math.random() * 255),
         newBlue = Math.round(Math.random() * 255);
 
-    var newRandomRGB = newColor.rgb;
-
-    game.color.target.current = newRandomRGB;
-    game.color.target.lab = getLABfromRGBobject(newRandomRGB);
+    game.color.target.current = newColor.rgb;
+    game.color.target.lab = getLABfromRGBobject(newColor.rgb);
     game.color.target.difficulty = newColor.difficulty;
-    ui.workarea.style.background = 'rgb(' + newRandomRGB.r + ',' + newRandomRGB.g + ',' + newRandomRGB.b + ')';
+    ui.workarea.style.background = 'rgb(' + newColor.rgb.r + ',' + newColor.rgb.g + ',' + newColor.rgb.b + ')';
 
-    return newRandomRGB;
+    return newColor.rgb;
 }
 
 ui.editArea.showResult = function(RGBcolor){
@@ -52,9 +49,9 @@ function compare(){
 
     // get values
     game.color.player.current = {
-        red : parseInt(ui.sliders.r.value),
-        green : parseInt(ui.sliders.g.value),
-        blue : parseInt(ui.sliders.b.value)
+        r : parseInt(ui.sliders.r.value),
+        g : parseInt(ui.sliders.g.value),
+        b : parseInt(ui.sliders.b.value)
     };
 
 

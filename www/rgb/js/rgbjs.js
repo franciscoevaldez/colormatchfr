@@ -42,11 +42,19 @@ function getLABfromRGB(red, green, blue){
   z = (z > 0.008856) ? Math.pow(z, 1/3) : (7.787 * z) + 16/116;
 
   return [(116 * y) - 16, 500 * (x - y), 200 * (y - z)]
+
+  // var nuLAB = {
+  //   "L" : (116 * y) - 16, 
+  //   "a" : 500 * (x - y)
+  //   "b" : 200 * (y - z)
+  // }
+
+  // return nuLAB;
 }
 
 // Get a LAB array from RGB array
 function getLABfromRGBobject(rgb) {
-  return getLABfromRGB(rgb.red, rgb.green, rgb.blue);
+  return getLABfromRGB(rgb.r, rgb.g, rgb.b);
 }
 
 // Get random color
