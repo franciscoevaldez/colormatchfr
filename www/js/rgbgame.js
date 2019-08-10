@@ -20,19 +20,21 @@ ui.editArea.show = function() {
 
 // function for getting a new color
 game.color.target.new = function(){
+
+    //new randomic test
+    var newColor = getAnyColor();
+
+
     var newRed = Math.round(Math.random() * 255),
         newGreen = Math.round(Math.random() * 255),
         newBlue = Math.round(Math.random() * 255);
 
-    var newRandomRGB = {
-        red : newRed,
-        green : newGreen,
-        blue : newBlue
-    };
+    var newRandomRGB = newColor.rgb;
 
     game.color.target.current = newRandomRGB;
     game.color.target.lab = getLABfromRGBobject(newRandomRGB);
-    ui.workarea.style.background = 'rgb(' + newRandomRGB.red + ',' + newRandomRGB.green + ',' + newRandomRGB.blue + ')';
+    game.color.target.difficulty = newColor.difficulty;
+    ui.workarea.style.background = 'rgb(' + newRandomRGB.r + ',' + newRandomRGB.g + ',' + newRandomRGB.b + ')';
 
     return newRandomRGB;
 }
@@ -59,7 +61,8 @@ function compare(){
     // log & ** analytics ** for tapped button
     var trackLabel = {
         "targetColor"   : game.color.target.current, 
-        "testColor"     : game.color.player.current
+        "testColor"     : game.color.player.current,
+        "difficulty"    : game.color.target.difficulty
     }
     var trackTag = {
         "category"  : "game",
@@ -80,7 +83,8 @@ function compare(){
         "deltaE"        : deltaE, 
         "tryNumber"     : game.tryCount, 
         "targetColor"   : game.color.target.current, 
-        "testColor"     : game.color.player.current
+        "testColor"     : game.color.player.current,
+        "difficulty"    : game.color.target.difficulty
     }
     var trackTag = {
         "category"  : "results",

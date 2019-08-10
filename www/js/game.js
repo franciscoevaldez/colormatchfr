@@ -44,7 +44,8 @@ function doNewColor(){
 
     // log & ** analytics ** for tapped button
     var trackLabel = {
-        "oldColor"      : game.color.target.current
+        "oldColor"      : game.color.target.current,
+        "difficulty"    : game.color.target.difficulty
     }
 
     var trackAction = game.hasInteracted ? "NewColor/AfterTrying" : "NewColor/WithoutTrying";
@@ -70,7 +71,8 @@ function doRestart(){
         "deltaE"        : game.deltaE, 
         "tryNumber"     : game.tryCount, 
         "oldColor"      : game.color.target.current, 
-        "testColor"     : game.color.player.current
+        "testColor"     : game.color.player.current,
+        "difficulty"    : game.color.target.difficulty
     }
     var trackTag = {
         "category"  : "game",
@@ -112,7 +114,8 @@ var game = {
         target      : {
             current : {},
             lab     : {},
-            new     : function (){}
+            new     : function (){},
+            difficulty: 0
         },
         player      : {
             current : {},
