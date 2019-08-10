@@ -41,27 +41,42 @@ function getRandom(minV,maxV){
 
 // RANDOM FACIL
 function getEasyColor(){
+    /* Definicion de facil:
+    - hue cada 30 (12 pasos)
+    - saturation alto (95 a 100)
+    - value alto (95 a 100)
+    */
+
     var h,s,v;
 
-    h = getRandom(0, 359);
-    s = getRandom(95, 99);
-    v = getRandom(95, 99);
-
-    //console.log(nuColor);
+    var hValues = 12;
+    h = getRandom(0,(hValues+1))*(360/hValues);
+    //h = getRandom(0, 359);
+    s = getRandom(95, 100);
+    v = getRandom(95, 100);
+    
     return {h: h, s:s, v:v};
 }
 
 // RANDOM MEDIO
 function getMediumColor(){
+    /* Definicion de intermedio:
+    - hue libre
+    - 2da variable acotada (95 a 100): saturation o value
+    - 3ra variable abierta pero alta (50 a 96): saturation o value
+    */
+
     var h,s,v, 
     valorVolatil, valorTranca,
     boolrand;
+    
+    valorTranca = getRandom(95,100);
+    valorVolatil = getRandom(50,90);
+    boolrand = getRandom(0,2)
+    
+    var hValues = 12;
+    h = getRandom(0,(hValues+1))*(360/hValues);
 
-    valorTranca = getRandom(95,99);
-    valorVolatil = getRandom( (150-valorTranca) ,95)
-    boolrand = getRandom(0,1)
-
-    h = getRandom(0, 359);
     if(boolrand){
         s = valorTranca;
         v = valorVolatil;
@@ -69,23 +84,28 @@ function getMediumColor(){
         s = valorVolatil;
         v = valorTranca;
     }
-
+    
     var nuColor = {h: h, s:s, v:v};
-    //console.log(nuColor);
     return nuColor;
 }
 
 // RANDOM DIFICIL
 function getHardColor(){
+    /* Definicion de dificil:
+    - hue libre
+    - 2da variable alta con rango (70 a 100): saturation o value
+    - 3ra variable baja con rango (20 a 50): saturation o value
+    */
+
     var h,s,v, 
-    valorPrimero, valorSegundo,
+    valorPrimero, valorSegundo, techoSegundo, pisoSegundo,
     boolrand;
+    
+    valorPrimero = getRandom(70,100);
+    valorSegundo = getRandom(30,65);
 
-    valorPrimero = getRandom(30,95);
-    var techoSegundo = (valorPrimero < 55) ? 95 : (150-valorPrimero)
-    valorSegundo = getRandom(30, techoSegundo)
-    boolrand = getRandom(0,1)
-
+    boolrand = getRandom(0,2)
+    
     h = getRandom(0, 359);
     if(boolrand){
         s = valorPrimero;
@@ -94,9 +114,8 @@ function getHardColor(){
         s = valorSegundo;
         v = valorPrimero;
     }
-
+    
     var nuColor = {h: h, s:s, v:v};
-    //console.log(nuColor);
     return nuColor;
 }
 
