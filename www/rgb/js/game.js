@@ -4,6 +4,7 @@
 - Status management
 - Color management
 - Grading
+- Analytics Tracking
 */
 
 // status changing and updates to the ui
@@ -50,12 +51,14 @@ function doNewColor(){
 
     var trackAction = game.hasInteracted ? "NewColor/AfterTrying" : "NewColor/WithoutTrying";
 
-    var trackTag = {
-        "category"  : "game",
-        "action"    : trackAction,
-        "label"     : trackLabel
-    }
-    console.log(trackTag);
+    // var trackTag = {
+    //     "category"  : "game",
+    //     "action"    : trackAction,
+    //     "label"     : trackLabel
+    // }
+    // console.log(trackTag);
+
+    fxTrackEvent("game", trackAction, trackLabel);
 
     game.color.target.new();
     game.hasInteracted = false;
@@ -74,12 +77,15 @@ function doRestart(){
         "testColor"     : game.color.player.current,
         "difficulty"    : game.color.target.difficulty
     }
-    var trackTag = {
-        "category"  : "game",
-        "action"    : "NewColor/FromResult",
-        "label"     : trackLabel
-    }
-    console.log(trackTag);
+    // var trackTag = {
+    //     "category"  : "game",
+    //     "action"    : "NewColor/FromResult",
+    //     "label"     : trackLabel
+    // }
+    // console.log(trackTag);
+
+    fxTrackEvent("game", "NewColor/FromResult", trackLabel);
+
 
     game.color.target.new();
     game.hasInteracted = false;
@@ -98,12 +104,13 @@ function doRetry(){
         "targetColor"   : game.color.target.current, 
         "testColor"     : game.color.player.current
     }
-    var trackTag = {
-        "category"  : "game",
-        "action"    : "retry",
-        "label"     : trackLabel
-    }
-    console.log(trackTag);
+    // var trackTag = {
+    //     "category"  : "game",
+    //     "action"    : "retry",
+    //     "label"     : trackLabel
+    // }
+    // console.log(trackTag);
+    fxTrackEvent("game", "retry", trackLabel);
 
     game.status.setToPlaying();
 }
@@ -177,5 +184,20 @@ function gradeDelta(newDelta){
     
     return [newClass, newMessage];
     
+}
+
+function fxTrackEvent(category, action, label){
+    var trackTag = {
+        "category"  : category,
+        "action"    : action,
+        "label"     : JSON.stringify(label)
+    }
+
+    console.log(trackTag);
+
+    gtag('event', trackTag.action, {
+      'event_category' : trackTag.category,
+      'event_label' : trackTag.label
+    });
 }
 

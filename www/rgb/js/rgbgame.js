@@ -61,12 +61,8 @@ function compare(){
         "testColor"     : game.color.player.current,
         "difficulty"    : game.color.target.difficulty
     }
-    var trackTag = {
-        "category"  : "game",
-        "action"    : "evaluate",
-        "label"     : trackLabel
-    }
-    console.log(trackTag);
+
+    fxTrackEvent("game", "evaluate", trackLabel);
 
     
     // calculate delta
@@ -83,12 +79,14 @@ function compare(){
         "testColor"     : game.color.player.current,
         "difficulty"    : game.color.target.difficulty
     }
-    var trackTag = {
-        "category"  : "results",
-        "action"    : "result",
-        "label"     : trackLabel
-    }
-    console.log(trackTag);
+    // var trackTag = {
+    //     "category"  : "results",
+    //     "action"    : "result",
+    //     "label"     : trackLabel
+    // }
+    // console.log(trackTag);
+
+    fxTrackEvent("game", "result", trackLabel);
 
     // show results
     changeToState("result");
