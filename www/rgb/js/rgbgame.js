@@ -24,10 +24,6 @@ game.color.target.new = function(){
     //new randomic test
     var newColor = getAnyColor();
 
-    var newRed = Math.round(Math.random() * 255),
-        newGreen = Math.round(Math.random() * 255),
-        newBlue = Math.round(Math.random() * 255);
-
     game.color.target.current = newColor.rgb;
     game.color.target.lab = getLABfromRGBobject(newColor.rgb);
     game.color.target.difficulty = newColor.difficulty;
@@ -62,6 +58,12 @@ function compare(){
         "difficulty"    : game.color.target.difficulty
     }
 
+    trackLabel = "";
+    trackLabel += "LV," + game.color.target.difficulty;
+    trackLabel += ",TC," + game.color.target.current.r + "," + game.color.target.current.g + "," + game.color.target.current.b;
+    trackLabel += ",PC," + game.color.player.current.r + "," + game.color.player.current.g + "," + game.color.player.current.b;
+    trackLabel += ",TR," + game.tryCount;
+
     fxTrackEvent("game", "evaluate", trackLabel);
 
     
@@ -79,14 +81,37 @@ function compare(){
         "testColor"     : game.color.player.current,
         "difficulty"    : game.color.target.difficulty
     }
-    // var trackTag = {
-    //     "category"  : "results",
-    //     "action"    : "result",
-    //     "label"     : trackLabel
-    // }
-    // console.log(trackTag);
+
+    trackLabel = "";
+    trackLabel += "LV," + game.color.target.difficulty;
+    trackLabel += ",TC," + game.color.target.current.r + "," + game.color.target.current.g + "," + game.color.target.current.b;
+    trackLabel += ",PC," + game.color.player.current.r + "," + game.color.player.current.g + "," + game.color.player.current.b;
+    trackLabel += ",DE," + deltaE;
+    trackLabel += ",TR," + game.tryCount;
 
     fxTrackEvent("game", "result", trackLabel);
+
+    if (deltaE < 1.5) {
+        var trackLabel = {
+            "deltaE"        : deltaE, 
+            "tryNumber"     : game.tryCount, 
+            "targetColor"   : game.color.target.current, 
+            "testColor"     : game.color.player.current,
+            "difficulty"    : game.color.target.difficulty
+        }
+        
+        trackLabel = "";
+        trackLabel += "LV," + game.color.target.difficulty;
+        trackLabel += ",TC," + game.color.target.current.r + "," + game.color.target.current.g + "," + game.color.target.current.b;
+        trackLabel += ",PC," + game.color.player.current.r + "," + game.color.player.current.g + "," + game.color.player.current.b;
+        trackLabel += ",DE," + deltaE;
+        trackLabel += ",TR," + game.tryCount;
+
+
+        fxTrackEvent("game", "result/under1.5", trackLabel);
+    }
+
+    
 
     // show results
     changeToState("result");

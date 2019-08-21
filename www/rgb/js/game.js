@@ -49,14 +49,11 @@ function doNewColor(){
         "difficulty"    : game.color.target.difficulty
     }
 
-    var trackAction = game.hasInteracted ? "NewColor/AfterTrying" : "NewColor/WithoutTrying";
+    trackLabel = "";
+    trackLabel += "LV," + game.color.target.difficulty;
+    trackLabel += ",OC," + game.color.target.current.r + "," + game.color.target.current.g + "," + game.color.target.current.b;
 
-    // var trackTag = {
-    //     "category"  : "game",
-    //     "action"    : trackAction,
-    //     "label"     : trackLabel
-    // }
-    // console.log(trackTag);
+    var trackAction = game.hasInteracted ? "NewColor/AfterTrying" : "NewColor/WithoutTrying";
 
     fxTrackEvent("game", trackAction, trackLabel);
 
@@ -77,12 +74,13 @@ function doRestart(){
         "testColor"     : game.color.player.current,
         "difficulty"    : game.color.target.difficulty
     }
-    // var trackTag = {
-    //     "category"  : "game",
-    //     "action"    : "NewColor/FromResult",
-    //     "label"     : trackLabel
-    // }
-    // console.log(trackTag);
+    
+    trackLabel = "";
+    trackLabel += "LV," + game.color.target.difficulty;
+    trackLabel += ",OC," + game.color.target.current.r + "," + game.color.target.current.g + "," + game.color.target.current.b;
+    trackLabel += ",PC," + game.color.player.current.r + "," + game.color.player.current.g + "," + game.color.player.current.b;
+    trackLabel += ",DE," + deltaE;
+    trackLabel += ",TR," + game.tryCount;
 
     fxTrackEvent("game", "NewColor/FromResult", trackLabel);
 
@@ -104,12 +102,14 @@ function doRetry(){
         "targetColor"   : game.color.target.current, 
         "testColor"     : game.color.player.current
     }
-    // var trackTag = {
-    //     "category"  : "game",
-    //     "action"    : "retry",
-    //     "label"     : trackLabel
-    // }
-    // console.log(trackTag);
+    
+    trackLabel = "";
+    trackLabel += "LV," + game.color.target.difficulty;
+    trackLabel += ",TC," + game.color.target.current.r + "," + game.color.target.current.g + "," + game.color.target.current.b;
+    trackLabel += ",PC," + game.color.player.current.r + "," + game.color.player.current.g + "," + game.color.player.current.b;
+    trackLabel += ",DE," + deltaE;
+    trackLabel += ",TR," + game.tryCount;
+
     fxTrackEvent("game", "retry", trackLabel);
 
     game.status.setToPlaying();
@@ -121,6 +121,7 @@ var game = {
         target      : {
             current : {},
             lab     : {},
+            descript: "",
             new     : function (){},
             difficulty: 0
         },
@@ -187,17 +188,21 @@ function gradeDelta(newDelta){
 }
 
 function fxTrackEvent(category, action, label){
-    var trackTag = {
-        "category"  : category,
-        "action"    : action,
-        "label"     : JSON.stringify(label)
-    }
+    // var trackTag = {
+    //     "category"  : category,
+    //     "action"    : action,
+    //     "label"     : label
+    // }
 
-    console.log(trackTag);
+    // console.log({
+    //     "category"  : category,
+    //     "action"    : action,
+    //     "label"     : label
+    // });
 
-    gtag('event', trackTag.action, {
-      'event_category' : trackTag.category,
-      'event_label' : trackTag.label
+    gtag('event', action, {
+      'event_category' : category,
+      'event_label' : label
     });
 }
 
